@@ -14,6 +14,14 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       ## Rememberable
       t.datetime :remember_created_at
 
+      t.string :name, null: false
+      t.integer :age, null: false
+      #年代をenumで選択できるようにする
+      t.integer :gender, null: false
+      #性別をenumで選択できるようにする
+      t.integer :area, null: false
+      #お住まいをenumで選択できるようにする
+
       ## Trackable
       # t.integer  :sign_in_count, default: 0, null: false
       # t.datetime :current_sign_in_at
