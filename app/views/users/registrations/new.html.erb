@@ -4,7 +4,22 @@
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "users/shared/error_messages", resource: resource %>
   <table class="table">
-    
+    <tr>
+      <th>ユーザ名</th>
+      <td><%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %></td>
+    </tr>
+    <tr>
+      <th>年代</th>
+      <td><%= f.select :age, User.ages_i18n.invert, {}, class: "form-control" %></td>
+    </tr>
+    <tr>
+      <th>性別</th>
+      <td><%= f.select :gender, User.genders_i18n.invert, {}, class: "form-control" %></td>
+    </tr>
+    <tr>
+      <th>お住まい</th>
+      <td><%= f.select :area, User.areas_i18n.invert, {}, class: "form-control" %></td>
+    </tr>
     <tr>
       <th>メールアドレス</th>
       <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %></td>
