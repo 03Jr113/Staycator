@@ -12,5 +12,10 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
   }
 
+  scope module: 'users' do
+    get 'users/unsubscribe' => 'users#unsubscribe'
+    patch 'users/withdraw' => 'users#withdraw'
+  end
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
