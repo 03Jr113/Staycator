@@ -1,0 +1,15 @@
+<header class="sticky-top">
+  <nav>
+    <div class='container'>
+      <div class="collapse navbar-collapse">
+        <ul>
+          <% if user_signed_in? %>
+            <li>
+              <%= link_to 'Log Out', destroy_user_session_path, method: :delete %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
