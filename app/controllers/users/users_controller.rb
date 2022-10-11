@@ -8,6 +8,14 @@ class Users::UsersController < ApplicationController
   def edit
   end
 
+  def update
+    if @user.update(user_params)
+      redirect_to users_mypage_path
+    else
+      render :edit
+    end
+  end
+
   def unsubscribe
   end
 
