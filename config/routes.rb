@@ -3,9 +3,12 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
   sessions:      'users/sessions',
   registrations: 'users/registrations',
-  passwords:     'users/passwords',
+  # passwords:     'users/passwords',
   }
-  
+
+  root to: 'users/homes#top'
+  get 'about' => 'users/homes#about'
+
   devise_for :admins, controllers: {
   sessions:      'admins/sessions',
   registrations: 'admins/registrations',
