@@ -24,8 +24,7 @@
           </li>
         <% elsif admin_signed_in? %>
           <li>
-            <%= link_to "会員一覧", root_path %>
-            <!--会員一覧へのリンクに変更-->
+            <%= link_to "ユーザ一覧", admin_users_path %>
           </li>
           <li>
             <%= link_to "レビュー一覧", about_path %>
