@@ -12,28 +12,32 @@
     <div class="collapse navbar-collapse" id="navbarNavDropDown">
       <ul class="navbar-nav">
         <% if user_signed_in? %>
-        <li>
-          <%= link_to "マイページ", root_path %>
-          <!--マイページへのリンクに変更-->
-        </li>
-        <li>
-          <%= link_to "レビュー投稿", about_path %>
-          <!--新規投稿へのリンクに変更-->
-        </li>
-        <li>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        </li>
+          <li>
+            <%= link_to "マイページ", users_mypage_path  %>
+          </li>
+          <li>
+            <%= link_to "レビュー投稿", about_path %>
+            <!--新規投稿へのリンクに変更-->
+          </li>
+          <li>
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+          </li>
+        <% elsif admin_signed_in? %>
+          <li>
+            <%= link_to "会員一覧", root_path %>
+            <!--会員一覧へのリンクに変更-->
+          </li>
+          <li>
+            <%= link_to "レビュー一覧", about_path %>
+            <!--レビュー一覧へのリンクに変更-->
+          </li>
+          <li>
+            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+          </li>
         <% else %>
-        <!--ユーザがログインしていない場合-->
-        <li>
-          <%= link_to "新規登録", new_user_registration_path %>
-        </li>
-        <li>
-          <%= link_to "ログイン", new_user_session_path %>
-        </li>
-        <li>
-          <%= link_to "サイト概要", about_path %>
-        </li>
+          <li><%= link_to "新規登録", new_user_registration_path %></li>
+          <li><%= link_to "ログイン", new_user_session_path %></li>
+          <li><%= link_to "サイト概要", about_path %></li>
         <% end %>
       </ul>
     </div>
