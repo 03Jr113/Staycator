@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   sessions:      'admins/sessions',
   }
 
-  namespace :admin do
+  namespace :admins do
     resources :users, only: [:index, :show, :edit, :update]
   end
 

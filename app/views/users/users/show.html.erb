@@ -4,9 +4,9 @@
       <div class="card h-100">
         <div class="card-header"><b><%= @user.name %> のページ</b></div>
         <div class="card-body">
-          <h6 class="card-title"><b>年代</b>：<%= @user.age_i18n %></h6>
-          <h6 class="card-title"><b>性別</b>：<%= @user.gender_i18n %></h6>
-          <h6 class="card-title"><b>お住まい</b>：<%= @user.area_i18n %></h6>
+          <h6 class="card-subtitle mt-3"><b>年代</b>：<%= @user.age_i18n %></h6>
+          <h6 class="card-subtitle mt-3"><b>性別</b>：<%= @user.gender_i18n %></h6>
+          <h6 class="card-subtitle mt-3"><b>お住まい</b>：<%= @user.area_i18n %></h6>
           <p class="card-text"><b>自己紹介</b><br><%= @user.introduction %></p>
         </div>
         <% if @user.id == current_user.id %>
