@@ -1,0 +1,23 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-12 my-5'>
+      <div class="card h-100">
+        <div class="card-header"><b><%= @user.name %> 様のページ</b></div>
+        <div class="card-body">
+          <h6 class="card-subtitle mt-3"><b>メールアドレス</b>：<%= @user.email %></h6>
+          <% if @user.is_deleted == false %>
+            <p class="card-text mt-3 text-success">有効</p>
+          <% else %>
+            <p class="card-text mt-3 text-danger">退会</p>
+          <% end %>
+          <h6 class="card-subtitle mt-3"><b>年代</b>：<%= @user.age_i18n %></h6>
+          <h6 class="card-subtitle mt-3"><b>性別</b>：<%= @user.gender_i18n %></h6>
+          <h6 class="card-subtitle mt-3"><b>お住まい</b>：<%= @user.area_i18n %></h6>
+          <p class="card-text mt-3"><b>自己紹介</b><br><%= @user.introduction %></p>
+          <%= link_to "Return", admins_users_path, class: "btn btn-outline-secondary" %>
+          <%= link_to "Edit User", edit_admins_user_path(@user.id), class: "btn btn-outline-secondary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

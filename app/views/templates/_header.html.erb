@@ -14,32 +14,35 @@
         <% if user_signed_in? %>
           <li>
             <%= link_to user_path(current_user.id) do %>
-            <i class="fa-solid fa-user fa-2x" style="color:#df9a9b;"></i>
-            <span style="color:#df9a9b;"><b>My Page</b></span>
+              <i class="fa-solid fa-user fa-2x" style="color:#df9a9b;"></i>  My Page
             <% end %>
           </li>
           <li>
             <%= link_to new_review_path do %>
-            <i class="fa-solid fa-book fa-2x" style="color:#df9a9b;"></i>
-            <span style="color:#df9a9b;"><b>New Post</b></span>
+              <i class="fa-solid fa-book fa-2x" style="color:#df9a9b;"> New Post</i>
             <% end %>
           </li>
           <li>
             <%= link_to destroy_user_session_path, method: :delete do %>
-            <i class="fa-solid fa-right-from-bracket fa-2x" style="color:#df9a9b;"></i>
-            <span style="color:#df9a9b;"><b>Log Out</b></span>
+              <i class="fa-solid fa-right-from-bracket fa-2x" style="color:#df9a9b;">Log Out</i>
             <% end %>
           </li>
         <% elsif admin_signed_in? %>
           <li>
-            <%= link_to "ユーザ一覧", admin_users_path %>
+            <%= link_to admins_users_path do %>
+              <i class="fa-solid fa-users fa-2x" style="color:#df9a9b;"></i><br>
+              <span style="color:#df9a9b;">Users</span>
+            <% end %>
           </li>
           <li>
             <%= link_to "レビュー一覧", about_path %>
             <!--レビュー一覧へのリンクに変更-->
           </li>
           <li>
-            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+            <%= link_to destroy_admin_session_path, method: :delete do %>
+              <i class="fa-solid fa-right-from-bracket fa-2x" style="color:#df9a9b;"></i><br>
+              <span style="color:#df9a9b;">Log Out</span>
+            <% end %>
           </li>
         <% else %>
           <li><%= link_to "新規登録", new_user_registration_path %></li>
