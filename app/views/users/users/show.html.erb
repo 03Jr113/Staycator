@@ -7,7 +7,18 @@
           <h6 class="card-title"><b>年代</b>：<%= @user.age_i18n %></h6>
           <h6 class="card-title"><b>性別</b>：<%= @user.gender_i18n %></h6>
           <h6 class="card-title"><b>お住まい</b>：<%= @user.area_i18n %></h6>
+          <p class="card-text"><b>自己紹介</b><br><%= @user.introduction %></p>
         </div>
+        <% if @user.id == current_user.id %>
+        <div class="card-footer">
+          <%= link_to edit_user_path(@user.id), class: "btn" do %>
+            <i class="fa-solid fa-pen-to-square fa-1x"> EDIT</i>
+          <% end %>
+          <%= link_to users_unsubscribe_path, class: "btn" do %>
+            <i class="fa-solid fa-user-slash fa-1x"> DELETE</i>
+          <% end %>
+        </div>
+        <% end %>
       </div>
     </div>
   </div>

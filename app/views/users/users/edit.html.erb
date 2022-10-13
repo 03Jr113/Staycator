@@ -1,28 +1,36 @@
 <div class='container'>
-  <h4 class="mt-3">会員情報編集</h4>
-  <%= form_with model: @user, url: users_information_path, method: :patch do |f| %>
-  <table class="table">
-    <tbody>
-      <tr>
-        <th>ユーザ名</th>
-        <td><%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %></td>
-      </tr>
-      <tr>
-        <th>年代</th>
-        <td><%= f.select :age, User.ages_i18n.invert, {}, class: "form-control" %></td>
-      </tr>
-      <tr>
-        <th>性別</th>
-        <td><%= f.select :gender, User.genders_i18n.invert, {}, class: "form-control" %></td>
-      </tr>
-      <tr>
-        <th>お住まい</th>
-        <td><%= f.select :area, User.areas_i18n.invert, {}, class: "form-control" %></td>
-      </tr>
-      <tr>
-        <td colspan="2"><%= f.submit "変更を保存", class: "btn btn-sm btn-success" %></td>
-      </tr>
-    </tbody>
-  </table>
-  <% end %>
+  <div class='row'>
+    <div class='col-12 my-5'>
+      <div class="card h-100">
+        <div class="card-header"><b>必要事項を入力して編集してください</b></div>
+        <%= form_with model: @user, url: user_path, method: :patch do |f| %>
+        <div class="card-body">
+          <div class="form-group">
+            <label><b>ユーザ名</b></label>
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <label><b>自己紹介</b></label>
+            <%= f.text_area :introduction, autofocus: true, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <label><b>年代</b></label>
+            <%= f.select :age, User.ages_i18n.invert, {}, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <label><b>性別</b></label>
+            <%= f.select :gender, User.genders_i18n.invert, {}, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <label><b>お住まい</b></label>
+            <%= f.select :area, User.areas_i18n.invert, {}, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.submit "変更を保存", class: "btn btn-outline-secondary" %>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
