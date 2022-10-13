@@ -19,9 +19,10 @@ Rails.application.routes.draw do
   scope module: 'users' do
     get 'users/unsubscribe' => 'users#unsubscribe'
     patch 'users/withdraw' => 'users#withdraw'
-    get 'users/mypage' => 'users#show'
+    # get 'users/mypage' => 'users#show'
     get 'users/information/edit' => 'users#edit'
     patch 'users/information' => 'users#update'
+    resources :users, only: [:show, :edit, :update]
     resources :reviews
   end
 
