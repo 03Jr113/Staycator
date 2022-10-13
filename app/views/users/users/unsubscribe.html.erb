@@ -1,15 +1,30 @@
 <div class='container'>
-  <h4 class="mt-3">本当に退会しますか？</h4>
-  <span>以下の注意事項を必ずご確認の上、退会の手続きをしてください。</span>
-  <div class='row mt-5'>
-    <ul>
-      <li style="list-style: none;"><b>プロフィール</b></li>
-      <li style="list-style: none;">個人情報はすべて削除されます。</li>
-      <li style="list-style: none;">再度登録された場合でも、退会前の登録内容を引き継ぐことはできません。</li>
-    </ul>
-  </div>
-  <div class="button">
-    <%= link_to "退会しない", root_path %>
-    <%= link_to "退会する", users_withdraw_path, method: :patch %>
+  <div class='row'>
+    <div class='col-12 my-5'>
+      <div class="card h-100 border-danger">
+        <div class="card-header"><b>まだ退会は完了していません</b></div>
+        <div class="card-body">
+          <h6 class="card-title text-danger"><b>以下の注意事項を必ずご確認の上、退会の手続きをしてください。</b></h6>
+          <p class="card-subtitle"><b>プロフィールについて</b></p>
+          <ol class="card-text">
+            <li>個人情報はすべて削除されます</li>
+            <li>再度登録された場合でも、退会前の登録内容を引き継ぐことはできません</li>
+          </ol>
+          <p class="card-subtitle"><b>レビュー・いいね・コメントについて</b></p>
+          <ol class="card-text">
+            <li>退会前に投稿したレビュー・いいねはすべて削除されます</li>
+            <li>退会前に投稿したコメントは、退会後も削除されません</li>
+          </ol>
+        </div>
+        <div class="card-footer">
+          <%= link_to root_path, class: "btn" do %>
+            <i class="fa-solid fa-house fa-1x"> 戻る</i>
+          <% end %>
+          <%= link_to users_withdraw_path, method: :patch, class: "btn" do %>
+            <i class="fa-solid fa-user-slash fa-1x"> 退会する</i>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
