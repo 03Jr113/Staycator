@@ -1,3 +1,29 @@
 <div class='container'>
-  <h4>TOP</h4>
+  <div class='row'>
+    <div class='col-12 my-5'>
+      <div class="card h-100">
+        <div class="card-header"><b>次はどこでステイケーションを楽しみますか？</b></div>
+        <div class="card-body">
+          <h5 class="card-title mt-3"><b>ホテルを検索してみましょう</b></h5>
+          <p class="card-subtitle mt-3 text-muted">ホテル名やタグ、施設・設備で検索できます</p>
+          <!--検索窓を設置する予定-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <% @reviews.first(4).each do |review| %>
+    <div class='col-4 my-5'>
+      <div class="card h-100">
+        <div class="card-header"><b>投稿日</b> <%= review.created_at.strftime( '%Y.%m.%d' ) %></div>
+        <div class="card-body">
+          <h4 class="card-title mt-3"><b><%= review.title %></b></h4>
+          <h6 class="card-subtitle mt-3 text-muted"><%= review.user.name %></h6>
+          <p class="card-text mt-3"><%= review.body %></p>
+          <%= link_to "read more", review_path(review.id), class: "btn btn-outline-secondary" %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
 </div>
