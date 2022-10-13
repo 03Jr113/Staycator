@@ -1,0 +1,33 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-12 my-5'>
+      <div class="card h-100">
+        <div class="card-header"><b>必要事項を入力して投稿してください</b></div>
+        <%= form_with model: @review, url: reviews_path, method: :post do |f| %>
+        <div class="card-body">
+          <div class="form-group">
+            <label><b>レビューのタイトル</b><i>（20文字以内）</i></label>
+            <%= f.text_field :title, autofocus: true, class: "form-control", :placeholder => "今回の体験で印象的だったことはなんですか？" %>
+          </div>
+          <div class="form-group">
+            <label><b>レビューの本文</b><i>（400文字以内）</i></label>
+            <%= f.text_area :body, autofocus: true, class: "form-control",
+                :placeholder => "お客様のご滞在体験について聞かせてください。客室・サービス・施設や設備はいかがでしたか？" %>
+          </div>
+          <div class="form-group">
+            <label><b>ご利用日</b><i>（ご入力は任意です）</i></label>
+            <%= f.date_field :date, autofocus: true, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <label><b>旅行者タイプ</b></label>
+            <%= f.select :traveler, Review.travelers_i18n.invert, {}, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.submit "レビューを投稿する", class: "btn btn-outline-secondary" %>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
