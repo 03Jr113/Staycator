@@ -24,3 +24,13 @@ ja:
         chugokushikoku: "中国・四国地方"
         kyushu: "九州地方"
         foreign: "外国"
+
+    review:
+      traveler:
+        couple: "カップル"
+        friend: "友達"
+        family: "家族"
+        single: "一人旅"
+        business: "ビジネス"
+        other: "その他"
+

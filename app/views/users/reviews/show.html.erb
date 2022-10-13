@@ -1,0 +1,30 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-12 my-5'>
+      <div class="card h-100">
+        <div class="card-header"><b>投稿日 <%= @review.created_at.strftime( '%Y.%m.%d' ) %></b></div>
+        <div class="card-body">
+          <h4 class="card-title mt-3"><b><%= @review.title %></b></h4>
+          <h5 class="card-subtitle mt-3"><%= @review.user.name %>（<%= @review.user.age_i18n %>）</h5>
+          <p class="card-text mt-3"><%= @review.body %></p>
+          <% if @review.date.present? %>
+            <p class="card-text">利用日：<%= @review.date.strftime( '%Y.%m.%d' ) %></p>
+          <% else %>
+            <p class="card-text">利用日：不明</p>
+          <% end %>
+          <p class="card-text">旅行者タイプ：<%= @review.traveler_i18n %></p>
+        </div>
+        <% if @review.user == current_user %>
+        <div class="card-footer">
+          <%= link_to edit_review_path(@review.id), class:"btn" do %>
+            <i class="fa-solid fa-pen-to-square fa-1x"> EDIT</i>
+          <% end %>
+          <%= link_to review_path(@review.id), method: :delete, class:"btn" do %>
+            <i class="fa-solid fa-trash fa-1x"> DELETE</i>
+          <% end %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
