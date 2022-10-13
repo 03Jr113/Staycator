@@ -1,49 +1,101 @@
 <div class='container'>
-  <h4>新規会員登録</h4>
+  <div class='row'>
+    <div class='col-12 my-5'>
+      <div class="card h-100">
+        <div class="card-header"><b>ユーザ新規登録画面</b></div>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <div class="card-body">
+          <%= render "users/shared/error_messages", resource: resource %>
+          <div class="form-group">
+            <label><b>ユーザ名</b></label>
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <label><b>年代</b></label>
+            <%= f.select :age, User.ages_i18n.invert, {}, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <label><b>性別</b></label>
+            <%= f.select :gender, User.genders_i18n.invert, {}, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <label><b>お住まい</b></label>
+            <%= f.select :area, User.areas_i18n.invert, {}, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <label><b>メールアドレス</b></label>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "users/shared/error_messages", resource: resource %>
-  <table class="table">
-    <tr>
-      <th>ユーザ名</th>
-      <td><%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %></td>
-    </tr>
-    <tr>
-      <th>年代</th>
-      <td><%= f.select :age, User.ages_i18n.invert, {}, class: "form-control" %></td>
-    </tr>
-    <tr>
-      <th>性別</th>
-      <td><%= f.select :gender, User.genders_i18n.invert, {}, class: "form-control" %></td>
-    </tr>
-    <tr>
-      <th>お住まい</th>
-      <td><%= f.select :area, User.areas_i18n.invert, {}, class: "form-control" %></td>
-    </tr>
-    <tr>
-      <th>メールアドレス</th>
-      <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %></td>
-    </tr>
-    <tr>
-      <th>パスワード</th>
-      <td>
-        <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
-        <% if @minimum_password_length %>
-          (<%= @minimum_password_length %>文字以上)
+          </div>
+          <div class="form-group">
+            <label><b>パスワード</b></label>
+            <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+            <% if @minimum_password_length %>
+              (<%= @minimum_password_length %>文字以上)
+             <% end %>
+          </div>
+          <div class="form-group">
+            <label><b>パスワード（確認用）</b></label>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.submit "新規登録", class: "btn btn-secondary" %>
+          </div>
+        </div>
         <% end %>
-      </td>
-    </tr>
-    <tr>
-      <th>パスワード（確認用）</th>
-      <td><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %></td>
-    </tr>
-    <tr>
-      <td><%= f.submit "新規登録", class: "btn btn-sm btn-success" %></td>
-    </tr>
-  </table>
-  <% end %>
-
-  <%= render "users/shared/links" %>
-
+        <div class="card-footer">
+          <%= render "users/shared/links" %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+<!--<div class='container'>-->
+<!--  <h4>新規会員登録</h4>-->
+
+<!--  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>-->
+<!--    <%= render "users/shared/error_messages", resource: resource %>-->
+<!--  <table class="table">-->
+<!--    <tr>-->
+<!--      <th>ユーザ名</th>-->
+<!--      <td><%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <th>年代</th>-->
+<!--      <td><%= f.select :age, User.ages_i18n.invert, {}, class: "form-control" %></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <th>性別</th>-->
+<!--      <td><%= f.select :gender, User.genders_i18n.invert, {}, class: "form-control" %></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <th>お住まい</th>-->
+<!--      <td><%= f.select :area, User.areas_i18n.invert, {}, class: "form-control" %></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <th>メールアドレス</th>-->
+<!--      <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <th>パスワード</th>-->
+<!--      <td>-->
+<!--        <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>-->
+<!--        <% if @minimum_password_length %>-->
+<!--          (<%= @minimum_password_length %>文字以上)-->
+<!--        <% end %>-->
+<!--      </td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <th>パスワード（確認用）</th>-->
+<!--      <td><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td><%= f.submit "新規登録", class: "btn btn-sm btn-success" %></td>-->
+<!--    </tr>-->
+<!--  </table>-->
+<!--  <% end %>-->
+
+<!--  <%= render "users/shared/links" %>-->
+
+<!--  </div>-->
+<!--</div>-->
