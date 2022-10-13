@@ -20,8 +20,8 @@ Rails.application.routes.draw do
     get 'users/unsubscribe' => 'users#unsubscribe'
     patch 'users/withdraw' => 'users#withdraw'
     # get 'users/mypage' => 'users#show'
-    get 'users/information/edit' => 'users#edit'
-    patch 'users/information' => 'users#update'
+    # get 'users/information/edit' => 'users#edit'
+    # patch 'users/information' => 'users#update'
     resources :users, only: [:show, :edit, :update]
     resources :reviews
   end

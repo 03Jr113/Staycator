@@ -1,5 +1,7 @@
 class Users::UsersController < ApplicationController
 
+  before_action :correct_user, only: [:edit, :update, :unsubscribe, :withdraw]
+
   def show
     @user = User.find(params[:id])
   end
@@ -28,12 +30,13 @@ class Users::UsersController < ApplicationController
 
   private
 
-  def set_current_user
-    @user = current_user
-  end
-
   def user_params
     params.require(:user).permit(:name, :introduction, :age, :gender, :area, :email, :is_deleted)
+  end
+
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to user_path(current_user) unless @user == current_user
   end
 
 end
