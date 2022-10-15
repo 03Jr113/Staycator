@@ -12,7 +12,8 @@
           <%= link_to "Read More", review_path(review.id), class: "btn btn-outline-dark" %>
         </div>
         <div class="card-footer">
-          <i class="fa-solid fa-thumbs-up fa-lg text-dark"></i>&nbsp;<%= review.bookmarks.count %>
+          <i class="fa-solid fa-thumbs-up fa-lg text-dark"></i>&nbsp;<%= review.bookmarks.count %>&emsp;
+          <i class="fas fa-comments fa-lg text-dark"></i>&nbsp;<%= review.comments.count %>
         </div>
       </div>
     </div>

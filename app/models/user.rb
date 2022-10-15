@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :reviews, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
+  has_many :comments
 
   validates :introduction, length: { maximum: 200 }
 

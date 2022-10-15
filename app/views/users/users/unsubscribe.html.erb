@@ -15,14 +15,8 @@
             <li>退会前に投稿したレビュー・いいねはすべて削除されます</li>
             <li>退会前に投稿したコメントは、退会後も削除されません</li>
           </ol>
-        </div>
-        <div class="card-footer">
-          <%= link_to root_path, class: "btn" do %>
-            <i class="fa-solid fa-house fa-1x"> RETURN</i>
-          <% end %>
-          <%= link_to users_withdraw_path, method: :patch, class: "btn" do %>
-            <i class="fa-solid fa-user-slash fa-1x"> DELETE</i>
-          <% end %>
+          <%= link_to "Return", root_path, class: "btn btn-outline-dark" %>
+          <%= link_to "Withdraw", users_withdraw_path, method: :patch, class: "btn btn-outline-dark" %>
         </div>
       </div>
     </div>
