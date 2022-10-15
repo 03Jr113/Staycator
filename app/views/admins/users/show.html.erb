@@ -14,8 +14,8 @@
           <h6 class="card-subtitle mt-3"><b>性別</b>：<%= @user.gender_i18n %></h6>
           <h6 class="card-subtitle mt-3"><b>お住まい</b>：<%= @user.area_i18n %></h6>
           <p class="card-text mt-3"><b>自己紹介</b><br><%= @user.introduction %></p>
-          <%= link_to "Return", admins_users_path, class: "btn btn-outline-secondary" %>
-          <%= link_to "Edit User", edit_admins_user_path(@user.id), class: "btn btn-outline-secondary" %>
+          <%= link_to "Return", admins_users_path, class: "btn btn-outline-dark" %>
+          <%= link_to "Edit User", edit_admins_user_path(@user.id), class: "btn btn-outline-dark" %>
         </div>
       </div>
     </div>
