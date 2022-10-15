@@ -23,17 +23,17 @@
           </div>
           <div class="form-group">
             <div class="btn-group" data-toggle="buttons">
-              <label class="btn btn-outline-secondary" style="width:50%">
+              <label class="btn btn-outline-dark" style="width:50%">
                 <%= f.radio_button :is_deleted, "false" %> 有効
               </label>
-              <label class="btn btn-outline-secondary" style="width:50%">
+              <label class="btn btn-outline-dark" style="width:50%">
                 <%= f.radio_button :is_deleted, "true" %> 退会
               </label>
             </div>
           </div>
           <div class="form-group">
-            <%= link_to "Show User", admins_user_path(@user.id), class: "btn btn-outline-secondary" %>
-            <%= f.submit "Save", class: "btn btn-outline-secondary" %>
+            <%= link_to "Show User", admins_user_path(@user.id), class: "btn btn-outline-dark" %>
+            <%= f.submit "Update", class: "btn btn-outline-dark" %>
           </div>
         </div>
         <% end %>

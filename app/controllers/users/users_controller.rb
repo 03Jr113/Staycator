@@ -1,9 +1,10 @@
 class Users::UsersController < ApplicationController
 
-  before_action :correct_user, only: [:edit, :update, :unsubscribe, :withdraw]
+  before_action :correct_user, only: [:edit, :update]
 
   def show
     @user = User.find(params[:id])
+    @bookmark = Bookmark.where(user_id: @user.id)
   end
 
   def edit
@@ -20,9 +21,11 @@ class Users::UsersController < ApplicationController
   end
 
   def unsubscribe
+    @user = current_user
   end
 
   def withdraw
+    @user = current_user
     @user.update(is_deleted: true)
     reset_session
     redirect_to root_path
