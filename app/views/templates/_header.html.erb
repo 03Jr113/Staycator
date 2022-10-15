@@ -24,24 +24,23 @@
           </li>
           <li class="mx-3">
             <%= link_to destroy_user_session_path, method: :delete do %>
-              <i class="fa-solid fa-right-from-bracket fa-2x" style="color:#fff;"></i><br>
+              <i class="fa-solid fa-right-from-bracket fa-2x" style="color:#fff;"></i>
             <% end %>
           </li>
         <% elsif admin_signed_in? %>
-          <li>
+          <li class="mx-3">
             <%= link_to admins_users_path do %>
-              <i class="fa-solid fa-users fa-2x" style="color:#fff;"></i><br>
-              <span style="color:#fff;">Users</span>
+              <i class="fa-solid fa-users fa-2x" style="color:#fff;"></i>
             <% end %>
           </li>
-          <li>
-            <%= link_to "レビュー一覧", about_path %>
-            <!--レビュー一覧へのリンクに変更-->
+          <li class="mx-3">
+            <%= link_to about_path do %>
+              <i class="fas fa-check-square fa-2x" style="color:#fff;"></i>
+            <% end %>
           </li>
-          <li>
+          <li class="mx-3">
             <%= link_to destroy_admin_session_path, method: :delete do %>
-              <i class="fa-solid fa-right-from-bracket fa-2x" style="color:#fff;"></i><br>
-              <span style="color:#df9a9b;">Log Out</span>
+              <i class="fa-solid fa-right-from-bracket fa-2x" style="color:#fff;"></i>
             <% end %>
           </li>
         <% else %>

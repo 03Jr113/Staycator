@@ -1,0 +1,8 @@
+<%= form_with model: [review, comment], url: review_comments_path(review.id), method: :post do |f| %>
+  <div class="form-group">
+    <%= f.text_area :comment, autofocus: true, class: "form-control", :placeholder => "レビューに感想を寄せましょう" %>
+  </div>
+  <div class="form-group">
+    <%= f.submit "Post Comment", class: "btn btn-outline-dark" %>
+  </div>
+<% end %>
