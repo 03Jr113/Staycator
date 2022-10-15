@@ -1,0 +1,9 @@
+<% if current_user.following?(user) %>
+  <%= link_to user_relationships_path(user), method: :delete, class: "btn btn-outline-dark" do %>
+    <i class="fas fa-user-minus fa-lg"></i>
+  <% end %>
+<% else %>
+  <%= link_to user_relationships_path(user), method: :post, class: "btn btn-outline-dark" do %>
+    <i class="fas fa-user-plus fa-lg"></i>
+  <% end %>
+<% end %>

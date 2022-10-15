@@ -1,23 +1,25 @@
 <div class='container'>
   <div class='row'>
-    <div class='col-6 my-5'>
+    <div class='col-3 my-5'>
       <div class="card h-100">
         <div class="card-header"><b><%= @user.name %> のページ</b></div>
         <div class="card-body">
+          <% if @user.id == current_user.id %>
+            <%= link_to "Edit User", edit_user_path(@user.id), class: "btn btn-outline-dark" %>
+            <%= link_to "Withdraw", users_unsubscribe_path, class: "btn btn-outline-dark" %>
+          <% else %>
+            <%= render 'relationships/followbtn', user: @user %>
+          <% end %>
           <h6 class="card-subtitle mt-3"><b>年代</b>：<%= @user.age_i18n %></h6>
           <h6 class="card-subtitle mt-3"><b>性別</b>：<%= @user.gender_i18n %></h6>
           <h6 class="card-subtitle mt-3"><b>お住まい</b>：<%= @user.area_i18n %></h6>
           <p class="card-text mt-3"><b>自己紹介</b><br><%= @user.introduction %></p>
-          <% if @user.id == current_user.id %>
-            <%= link_to "Edit User", edit_user_path(@user.id), class: "btn btn-outline-dark" %>
-            <%= link_to "Withdraw", users_unsubscribe_path, class: "btn btn-outline-dark" %>
-          <% end %>
         </div>
       </div>
     </div>
-    <div class='col-6 my-5'>
+    <div class='col-3 my-5'>
       <div class="card h-100">
-        <div class="card-header"><b>「参考になった」レビュー</b></div>
+        <div class="card-header"><b>参考になったレビュー</b></div>
         <div class="card-body">
         <% @bookmark.each do |bookmark| %>
           <h6 class="card-text mt-3">
@@ -27,6 +29,22 @@
             <% end %>
           </h6>
         <% end %>
+        </div>
+      </div>
+    </div>
+    <div class='col-3 my-5'>
+      <div class="card h-100">
+        <div class="card-header"><b><%= @user.name %>のフォロー</b></div>
+        <div class="card-body">
+        <%= render 'relationships/followlist', users: @followed_users %>
+        </div>
+      </div>
+    </div>
+    <div class='col-3 my-5'>
+      <div class="card h-100">
+        <div class="card-header"><b><%= @user.name %>のフォロワー</b></div>
+        <div class="card-body">
+        <%= render 'relationships/followlist', users: @follower_users %>
         </div>
       </div>
     </div>

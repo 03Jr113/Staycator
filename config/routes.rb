@@ -19,7 +19,11 @@ Rails.application.routes.draw do
   scope module: 'users' do
     get 'users/unsubscribe' => 'users#unsubscribe'
     patch 'users/withdraw' => 'users#withdraw'
-    resources :users, only: [:show, :edit, :update]
+    resources :users, only: [:show, :edit, :update] do
+      resource :relationships, only: [:create, :destroy]
+      get 'followed' => 'relationships#followed'
+      get 'follower' => 'relationships#followers'
+    end
     resources :reviews do
       resource :bookmarks, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]

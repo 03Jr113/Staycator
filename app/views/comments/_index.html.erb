@@ -2,7 +2,7 @@
 <p class="card-text mt-3">
   <% if comment.user.is_deleted == false %>
     <%= comment.user.name %>
-    <%= link_to user_path(comment.user), class: "btn btn-outline-dark" do %>
+    <%= link_to user_path(comment.user), class: "btn btn-sm btn-outline-dark" do %>
       <i class="fas fa-user"></i>&nbsp;Show User
     <% end %>
   <% else %>
