@@ -49,8 +49,8 @@
       </div>
     </div>
   </div>
+  <% @user.reviews.each do |review| %>
   <div class='row'>
-    <% @user.reviews.each do |review| %>
     <div class='col-4 mb-5'>
       <div class="card h-100">
         <div class="card-header"><b>投稿日</b> <%= review.created_at.strftime( '%Y.%m.%d' ) %></div>
@@ -62,6 +62,6 @@
         </div>
       </div>
     </div>
-    <% end %>
   </div>
+  <% end %>
 </div>
