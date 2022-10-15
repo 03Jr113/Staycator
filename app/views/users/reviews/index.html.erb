@@ -11,6 +11,9 @@
           <p class="card-text mt-3 text-truncate"><%= review.body %></p>
           <%= link_to "Read More", review_path(review.id), class: "btn btn-outline-dark" %>
         </div>
+        <div class="card-footer">
+          <i class="fa-solid fa-thumbs-up fa-lg text-dark"></i>&nbsp;<%= review.bookmarks.count %>
+        </div>
       </div>
     </div>
     <% end %>
