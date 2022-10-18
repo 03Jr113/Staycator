@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :users, only: [:index, :show, :edit, :update]
     resources :reviews, only: [:index, :show, :destroy]
+    resources :tags, only: [:index, :destroy]
   end
 
   devise_for :users, controllers: {
