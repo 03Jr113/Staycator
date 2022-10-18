@@ -3,6 +3,8 @@ class Review < ApplicationRecord
   belongs_to :user
   has_many :bookmarks, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :tag_maps, dependent: :destroy
+  has_many :tags, through: :tag_maps
 
   def bookmarked_by?(user)
     bookmarks.where(user_id: user).exists?
@@ -12,5 +14,22 @@ class Review < ApplicationRecord
 
   validates :title, presence: true, length: { maximum: 20 }
   validates :body, presence: true, length: { maximum: 400 }
+
+  def save_tag(sent_tags)
+    tag_list = tags.split(/[[:blank:]]+/)
+
+    current_tags = self.tags.pluck(:name) unless self.tags.nil?
+    old_tags = current_tags - sent_tags
+    new_tags = sent_tags - current_tags
+
+    old_tags.each do |old|
+      self.post_tags.delete Tag.find_by(name: old)
+    end
+
+    new_tags.each do |new|
+      new_post_tag = Tag.find_or_create_by(name: new)
+      self.tags << new_post_tag
+    end
+  end
 
 end
