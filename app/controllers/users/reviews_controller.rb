@@ -48,10 +48,6 @@ class Users::ReviewsController < ApplicationController
     redirect_to reviews_path
   end
 
-  # def rank
-  #   @tag_rank = Tag.find(TagMap.group(:tag_id).order('count(tag_id)desc').limit(4).pluck(:tag_id))
-  # end
-
   private
 
   def review_params

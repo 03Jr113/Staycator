@@ -1,12 +1,5 @@
 <div class='container'>
   <div class='row'>
-    <div class='col-12 my-5'>
-      <% @tag_list.each do |list| %>
-      
-      <% end %>
-    </div>
-  </div>
-  <div class='row'>
     <% if reviews.present? %>
       <% reviews.each do |review| %>
       <div class='col-4 my-5'>
@@ -24,7 +17,7 @@
             <% if user_signed_in? %>
               <%= link_to "Read More", review_path(review.id), class: "btn btn-outline-dark" %>
             <% elsif admin_signed_in? %>
-              <%= link_to "Check Review", admins_review_path(review.id), class: "btn btn-outline-dark" %>
+              <%= link_to "Check Review", admins_review_path(review.id), class: "btn btn-outline-danger" %>
             <% end %>
           </div>
           <div class="card-footer">
