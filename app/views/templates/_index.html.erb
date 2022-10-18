@@ -1,5 +1,12 @@
 <div class='container'>
   <div class='row'>
+    <div class='col-12 my-5'>
+      <% @tag_list.each do |list| %>
+      
+      <% end %>
+    </div>
+  </div>
+  <div class='row'>
     <% if reviews.present? %>
       <% reviews.each do |review| %>
       <div class='col-4 my-5'>
@@ -8,7 +15,11 @@
           <div class="card-body">
             <h4 class="card-title mt-3"><b><%= review.title %></b></h4>
             <h6 class="card-subtitle mt-3 text-muted"><%= review.user.name %></h6>
-            <h6 class="card-subtitle mt-3 text-muted">ご利用日 <%= review.date.strftime( '%Y.%m.%d' ) %></h6>
+            <% if review.date.present? %>
+              <h6 class="card-subtitle mt-3 text-muted">利用日：<%= review.date.strftime( '%Y.%m.%d' ) %></h6>
+            <% else %>
+            <h6 class="card-subtitle mt-3 text-muted">利用日：不明</h6>
+            <% end %>
             <p class="card-text mt-3 text-truncate"><%= review.body %></p>
             <% if user_signed_in? %>
               <%= link_to "Read More", review_path(review.id), class: "btn btn-outline-dark" %>

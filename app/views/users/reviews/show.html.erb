@@ -1,6 +1,6 @@
 <div class='container'>
   <div class='row'>
-    <div class='col-12 my-5'>
+    <div class='col-9 my-5'>
       <div class="card h-100">
         <div class="card-header"><b>投稿日 <%= @review.created_at.strftime( '%Y.%m.%d' ) %></b></div>
         <div class="card-body">
@@ -33,6 +33,16 @@
             <%= render 'comments/form', review: @review, comment: @comment %>
           </div>
         </div>
+      </div>
+    </div>
+    <div class='col-3 my-5'>
+      <div class="card h-100">
+        <div class="card-header"><b>タグ一覧</b></div>
+        <% @review.tags.each do |tag| %>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><%= tag.name %></li>
+        </ul>
+        <% end %>
       </div>
     </div>
   </div>

@@ -1,6 +1,6 @@
 <div class='container'>
   <div class='row'>
-    <div class='col-12 my-5'>
+    <div class='col-8 my-5'>
       <div class="card h-100">
         <div class="card-header"><b>次はどこでステイケーションを楽しみますか？</b></div>
         <div class="card-body">
@@ -8,6 +8,18 @@
           <p class="card-subtitle mt-3 text-muted">ホテル名やタグ、施設・設備で検索できます</p>
           <!--検索窓を設置する予定-->
         </div>
+      </div>
+    </div>
+    <div class='col-4 my-5'>
+      <div class="card h-100">
+        <div class="card-header"><b>人気のタグランキング</b></div>
+        <% if @tag_ranks.present? %>
+          <% @tag_ranks.each.with_index(1) do |tag,i| %>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><%= i %><%= tag.name %></li>
+          </ul>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>

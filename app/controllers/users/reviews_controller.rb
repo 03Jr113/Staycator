@@ -3,13 +3,15 @@ class Users::ReviewsController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
 
   def new
-    @review = Review.new
+    @review = current_user.reviews.new
   end
 
   def create
-    @review = Review.new(review_params)
-    @review.user_id = current_user.id
+    @review = current_user.reviews.new(review_params)
+    # @review.user_id = current_user.id
+    tag_list = params[:review][:tags].split(nil)
     if @review.save
+      @review.save_tag(tag_list)
       redirect_to review_path(@review.id)
     else
       render :new
@@ -18,10 +20,12 @@ class Users::ReviewsController < ApplicationController
 
   def index
     @reviews = Review.all
+    @tag_list = Tag.all
   end
 
   def show
     @review = Review.find(params[:id])
+    @review_tag = @review.tags
     @comment = Comment.new
   end
 
@@ -43,6 +47,10 @@ class Users::ReviewsController < ApplicationController
     review.destroy
     redirect_to reviews_path
   end
+
+  # def rank
+  #   @tag_rank = Tag.find(TagMap.group(:tag_id).order('count(tag_id)desc').limit(4).pluck(:tag_id))
+  # end
 
   private
 
