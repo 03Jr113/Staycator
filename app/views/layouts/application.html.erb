@@ -16,7 +16,10 @@
 
   <body>
     <%= render 'templates/header' %>
-    <main><%= yield %></main>
+    <main>
+      <%= render 'templates/flash' %>
+      <%= yield %>
+    </main>
     <%= render 'templates/footer' %>
   </body>
 </html>

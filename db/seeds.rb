@@ -10,3 +10,12 @@ Admin.create!(
    email: 'staycator@hotel.com',
    password: 'staycator202210'
 )
+
+Tag.create!([
+  { name: 'DVD・Blu-rayプレイヤー' },
+  { name: 'HDMI端子・貸出ケーブル' },
+  { name: 'TVミラーリング' },
+  { name: 'プロジェクター' },
+  { name: '館内に売店・レストラン' },
+  { name: '大浴場・サウナ・岩盤浴' }
+])

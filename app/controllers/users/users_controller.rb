@@ -17,6 +17,7 @@ class Users::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
+      flash[:notice] = 'プロフィールを更新しました'
       redirect_to user_path(@user.id)
     else
       render :edit
@@ -42,13 +43,14 @@ class Users::UsersController < ApplicationController
 
   def correct_user
     @user = User.find(params[:id])
+    flash[:alert] = '投稿者以外は編集できません'
     redirect_to user_path(current_user) unless @user == current_user
   end
 
   def ensure_guest_user
     @user = User.find(params[:id])
     if @user.name == "Guest_User"
-      flash[:danger] = "ゲストユーザではご利用いただけません"
+      flash[:alert] = "ゲストユーザではご利用いただけません"
       redirect_to root_path
     end
   end

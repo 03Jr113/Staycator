@@ -1,6 +1,6 @@
 class Users::ReviewsController < ApplicationController
 
-  before_action :correct_user, only: [:edit, :update]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def new
     @review = current_user.reviews.new
@@ -12,6 +12,7 @@ class Users::ReviewsController < ApplicationController
     tag_list = params[:review][:tags].split(nil)
     if @review.save
       @review.save_tag(tag_list)
+      flash[:notice] = 'レビューを投稿しました'
       redirect_to review_path(@review.id)
     else
       render :new
@@ -36,6 +37,7 @@ class Users::ReviewsController < ApplicationController
   def update
     @review = Review.find(params[:id])
     if @review.update(review_params)
+      flash[:notice] = 'レビューを更新しました'
       redirect_to review_path(@review.id)
     else
       render :edit
@@ -45,6 +47,7 @@ class Users::ReviewsController < ApplicationController
   def destroy
     review = Review.find(params[:id])
     review.destroy
+    flash[:notice] = 'レビューを削除しました'
     redirect_to reviews_path
   end
 
@@ -56,6 +59,7 @@ class Users::ReviewsController < ApplicationController
 
   def correct_user
     @user = User.find(params[:id])
+    flash[:alert] = '投稿者以外は編集できません'
     redirect_to reviews_path unless @user == current_user
   end
 

@@ -11,7 +11,7 @@ class Admins::ReviewsController < ApplicationController
   def destroy
     review = Review.find(params[:id])
     review.destroy
-    redirect_to admins_reviews_path
+    redirect_to admins_reviews_path, danger: '投稿を削除しました'
   end
 
 end

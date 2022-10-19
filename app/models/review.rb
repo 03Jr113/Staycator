@@ -5,6 +5,8 @@ class Review < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :tag_maps, dependent: :destroy
   has_many :tags, through: :tag_maps
+  has_many :item_maps, dependent: :destroy
+  has_many :items, through: :item_maps
 
   def bookmarked_by?(user)
     bookmarks.where(user_id: user).exists?
