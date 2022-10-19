@@ -7,12 +7,8 @@ class Users::ReviewsController < ApplicationController
   end
 
   def create
-<<<<<<< HEAD
-    @review = current_user.reviews.new(review_params)
-=======
     @review = Review.new(review_params)
     @review.user_id = current_user.id
->>>>>>> origin/develop
     tag_list = params[:review][:tags].split(nil)
     if @review.save
       @review.save_tag(tag_list)
@@ -63,6 +59,7 @@ class Users::ReviewsController < ApplicationController
 
   def correct_user
     @user = User.find(params[:id])
+    flash[:alert] = '投稿者以外は編集できません'
     redirect_to reviews_path unless @user == current_user
   end
 
