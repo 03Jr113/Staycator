@@ -1,5 +1,7 @@
 class Review < ApplicationRecord
 
+  has_one_attached :image
+
   belongs_to :user
   has_many :bookmarks, dependent: :destroy
   has_many :comments, dependent: :destroy
