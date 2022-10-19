@@ -1,6 +1,7 @@
 class Users::UsersController < ApplicationController
 
   before_action :correct_user, only: [:edit, :update]
+  before_action :ensure_guest_user, only: [:edit, :update]
 
   def show
     @user = User.find(params[:id])
@@ -42,6 +43,14 @@ class Users::UsersController < ApplicationController
   def correct_user
     @user = User.find(params[:id])
     redirect_to user_path(current_user) unless @user == current_user
+  end
+
+  def ensure_guest_user
+    @user = User.find(params[:id])
+    if @user.name == "Guest_User"
+      flash[:danger] = "ゲストユーザではご利用いただけません"
+      redirect_to root_path
+    end
   end
 
 end
