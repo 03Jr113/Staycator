@@ -5,6 +5,18 @@
         <div class="card-header"><b>投稿日 <%= @review.created_at.strftime( '%Y.%m.%d' ) %></b></div>
         <div class="card-body">
           <h4 class="card-title mt-3"><b><%= @review.title %></b></h4>
+          <div id="star-rate-<%= @review.id %>"></div>
+          <script>
+          $('#star-rate-<%= @review.id %>').raty({
+            size: 38,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            half: true,
+            readOnly: true,
+            score: <%= @review.rate %>,
+          });
+          </script>
           <h5 class="card-subtitle mt-3">
             <%= @review.user.name %>&nbsp;
             <%= link_to user_path(@review.user), class: "btn btn-sm btn-outline-dark" do %>

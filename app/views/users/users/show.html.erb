@@ -1,6 +1,6 @@
 <div class='container'>
   <div class='row'>
-    <div class='col-3 my-5'>
+    <div class='col-3 mt-5'>
       <div class="card h-100">
         <div class="card-header"><b><%= @user.name %> のページ</b></div>
         <div class="card-body">
@@ -17,7 +17,7 @@
         </div>
       </div>
     </div>
-    <div class='col-3 my-5'>
+    <div class='col-3 mt-5'>
       <div class="card h-100">
         <div class="card-header"><b>参考になったレビュー</b></div>
         <div class="card-body">
@@ -32,7 +32,7 @@
         </div>
       </div>
     </div>
-    <div class='col-3 my-5'>
+    <div class='col-3 mt-5'>
       <div class="card h-100">
         <div class="card-header"><b><%= @user.name %>のフォロー</b></div>
         <div class="card-body">
@@ -40,7 +40,7 @@
         </div>
       </div>
     </div>
-    <div class='col-3 my-5'>
+    <div class='col-3 mt-5'>
       <div class="card h-100">
         <div class="card-header"><b><%= @user.name %>のフォロワー</b></div>
         <div class="card-body">
@@ -50,6 +50,7 @@
     </div>
   </div>
   <div class='row'>
+<<<<<<< HEAD
   <% @user.reviews.each do |review| %>
     <div class='col-4 mb-5'>
       <div class="card h-100">
@@ -67,5 +68,8 @@
       </div>
     </div>
   <% end %>
+=======
+    <%= render 'templates/index', reviews: @user.reviews %>
+>>>>>>> origin/develop
   </div>
 </div>

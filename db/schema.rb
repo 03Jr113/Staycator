@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2022_10_18_115720) do
+=======
+ActiveRecord::Schema.define(version: 2022_10_19_080222) do
+>>>>>>> origin/develop
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -73,6 +77,7 @@ ActiveRecord::Schema.define(version: 2022_10_18_115720) do
     t.text "body", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "rate"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 

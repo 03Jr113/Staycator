@@ -16,9 +16,16 @@ class User < ApplicationRecord
 
   validates :introduction, length: { maximum: 200 }
 
-  enum age: { ten: 0, twenty: 1, thirty: 2, fourty: 3, fifty: 4, sixty: 5 }
+  enum age: { ten: 0, twenty: 1, thirty: 2, fourty: 3, fifty: 4, sixty: 5, personal: 6 }
   enum gender: { male: 0, female: 1, other: 2 }
   enum area: { secret: 0, hokkaido: 1, tohoku: 2, kanto: 3, chubu: 4, kinki: 5, chugokushikoku: 6, kyushu: 7, foreign: 8 }
+
+  def self.guest
+    find_or_create_by!( name:'Guest_User', email:'guest@example.com', age:1, gender:2, area:0 ) do |user|
+    user.password = SecureRandom.urlsafe_base64
+    user.name = "Guest_User"
+    end
+  end
 
   def follow(user_id)
     follower.create(followed_id: user_id)
