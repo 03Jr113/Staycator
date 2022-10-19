@@ -5,6 +5,7 @@ class Users::CommentsController < ApplicationController
     @comment = @review.comments.new(comment_params)
     @comment.user_id = current_user.id
     if @comment.save
+      flash[:notice] = 'コメントを投稿しました'
       redirect_to request.referer
     else
       redirect_to request.referer
@@ -12,7 +13,9 @@ class Users::CommentsController < ApplicationController
   end
 
   def destroy
-    Comment.find(params[:id]).destroy
+    comment = Comment.find(params[:id])
+    comment.destroy
+    flash[:notice] = 'コメントを削除しました'
     redirect_to request.referer
   end
 
