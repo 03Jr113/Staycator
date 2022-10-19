@@ -54,13 +54,13 @@ class Users::ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:user_id, :date, :traveler, :title, :body, :rate)
+    params.require(:review).permit(:user_id, :date, :traveler, :title, :body, :rate, item_ids: [])
   end
 
   def correct_user
-    @user = User.find(params[:id])
+    @review = Review.find(params[:id])
     flash[:alert] = '投稿者以外は編集できません'
-    redirect_to reviews_path unless @user == current_user
+    redirect_to reviews_path unless @review.user == current_user
   end
 
 end

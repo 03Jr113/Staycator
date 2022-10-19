@@ -1,6 +1,6 @@
 <div class='container'>
   <div class='row'>
-    <div class='col-9 my-5'>
+    <div class='col-6 my-5'>
       <div class="card h-100">
         <div class="card-header"><b>投稿日 <%= @review.created_at.strftime( '%Y.%m.%d' ) %></b></div>
         <div class="card-body">
@@ -49,14 +49,29 @@
     </div>
     <div class='col-3 my-5'>
       <div class="card h-100">
+        <div class="card-header"><b>サービス一覧</b></div>
+        <% @review.items.each do |item| %>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item text-truncate">
+            <%= link_to item_path(item), class: "btn btn-outline-dark" do %>
+              <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+            <% end %>
+            <%= item.name %>
+          </li>
+        </ul>
+        <% end %>
+      </div>
+    </div>
+    <div class='col-3 my-5'>
+      <div class="card h-100">
         <div class="card-header"><b>タグ一覧</b></div>
         <% @review.tags.each do |tag| %>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">
+          <li class="list-group-item text-truncate" >
             <%= link_to tag_path(tag), class: "btn btn-outline-dark" do %>
               <i class="fa-solid fa-magnifying-glass fa-lg"></i>
             <% end %>
-            <%= tag.name %>
+            #<%= tag.name %>
           </li>
         </ul>
         <% end %>
