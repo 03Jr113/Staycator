@@ -1,43 +1,40 @@
-<div class='container'>
-  <div class='row'>
-    <% if reviews.present? %>
-      <% reviews.each do |review| %>
-      <div class='col-4 my-5'>
-        <div class="card h-100">
-          <div class="card-header"><b>投稿日</b> <%= review.created_at.strftime( '%Y.%m.%d' ) %></div>
-          <div class="card-body">
-            <h4 class="card-title mt-3"><b><%= review.title %></b></h4>
-            <h6 class="card-subtitle mt-3 text-muted"><%= review.user.name %></h6>
-            <% if review.date.present? %>
-              <h6 class="card-subtitle mt-3 text-muted">利用日：<%= review.date.strftime( '%Y.%m.%d' ) %></h6>
-            <% else %>
-            <h6 class="card-subtitle mt-3 text-muted">利用日：不明</h6>
-            <% end %>
-            <p class="card-text mt-3 text-truncate"><%= review.body %></p>
-            <% if user_signed_in? %>
-              <%= link_to "Read More", review_path(review.id), class: "btn btn-outline-dark" %>
-            <% elsif admin_signed_in? %>
-              <%= link_to "Check Review", admins_review_path(review.id), class: "btn btn-outline-danger" %>
-            <% end %>
-          </div>
-          <div class="card-footer">
-            <i class="fa-solid fa-thumbs-up fa-lg text-dark"></i>&nbsp;<%= review.bookmarks.count %>&emsp;
-            <i class="fas fa-comments fa-lg text-dark"></i>&nbsp;<%= review.comments.count %>
-          </div>
-        </div>
+<% if reviews.present? %>
+  <% reviews.each do |review| %>
+  <div class='col-4 my-5'>
+    <div class="card h-100">
+      <div class="card-header"><b>投稿日</b> <%= review.created_at.strftime( '%Y.%m.%d' ) %></div>
+      <div class="card-body">
+        <h4 class="card-title mt-3 text-truncate"><b><%= review.title %></b></h4>
+        <h6 class="card-subtitle mt-3 text-muted"><%= review.user.name %></h6>
+        <% if review.date.present? %>
+          <h6 class="card-subtitle mt-3 text-muted">利用日：<%= review.date.strftime( '%Y.%m.%d' ) %></h6>
+        <% else %>
+          <h6 class="card-subtitle mt-3 text-muted">利用日：不明</h6>
+        <% end %>
+        <p class="card-text mt-3 text-truncate"><%= review.body %></p>
+        <% if user_signed_in? %>
+          <%= link_to "Read More", review_path(review.id), class: "btn btn-outline-dark" %>
+        <% elsif admin_signed_in? %>
+          <%= link_to "Check Review", admins_review_path(review.id), class: "btn btn-outline-danger" %>
+        <% end %>
       </div>
-      <% end %>
-    <% else %>
-      <div class='col-12 my-5'>
-        <div class="card h-100">
-          <div class="card-header"><b>まだレビューは投稿されていません</b></div>
-          <div class="card-body">
-            <h5 class="card-title mt-3"><b>ホテルを検索してレビューを投稿してみましょう</b></h5>
-            <p class="card-subtitle mt-3 text-muted">ホテル名が検索できます</p>
-            <!--検索窓を設置する予定-->
-          </div>
-        </div>
+      <div class="card-footer">
+        <i class="fa-solid fa-thumbs-up fa-lg text-dark"></i>&nbsp;<%= review.bookmarks.count %>&emsp;
+        <i class="fas fa-comments fa-lg text-dark"></i>&nbsp;<%= review.comments.count %>
       </div>
-    <% end %>
+    </div>
   </div>
-</div>
+  <% end %>
+<% else %>
+  <div class='col-12 my-5'>
+    <div class="card h-100">
+      <div class="card-header"><b>まだレビューは投稿されていません</b></div>
+      <div class="card-body">
+        <% if user_signed_in? %>
+          <h5 class="card-title mt-3"><b>自身の体験を共有しましょう</b></h5>
+          <%= link_to "Post Review", new_review_path, class: "btn btn-outline-dark" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

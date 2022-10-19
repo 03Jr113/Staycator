@@ -7,8 +7,8 @@ class Users::ReviewsController < ApplicationController
   end
 
   def create
-    @review = current_user.reviews.new(review_params)
-    # @review.user_id = current_user.id
+    @review = Review.new(review_params)
+    @review.user_id = current_user.id
     tag_list = params[:review][:tags].split(nil)
     if @review.save
       @review.save_tag(tag_list)
