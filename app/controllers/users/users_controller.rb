@@ -43,7 +43,7 @@ class Users::UsersController < ApplicationController
 
   def correct_user
     @user = User.find(params[:id])
-    flash[:alert] = '投稿者以外は編集できません'
+    flash[:alert] = '他のユーザのプロフィールは編集できません'
     redirect_to user_path(current_user) unless @user == current_user
   end
 

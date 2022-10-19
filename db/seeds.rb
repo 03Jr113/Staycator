@@ -11,7 +11,7 @@ Admin.create!(
    password: 'staycator202210'
 )
 
-Tag.create!([
+Item.create!([
   { name: 'DVD・Blu-rayプレイヤー' },
   { name: 'HDMI端子・貸出ケーブル' },
   { name: 'TVミラーリング' },

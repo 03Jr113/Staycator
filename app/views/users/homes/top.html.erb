@@ -16,9 +16,17 @@
     <div class='col-3 mt-5'>
       <div class="card h-100">
         <div class="card-header"><b>人気のタグランキング</b></div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item"></li>
-        </ul>
+        <% if @item_ranks.present? %>
+          <% @item_ranks.each.with_index(1) do |item, i| %>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              第<%= i %>位
+              <%= item.name %>
+            </li>
+          </ul>
+          <% end %>
+        <% else %>
+        <% end %>
       </div>
     </div>
     <div class='col-3 mt-5'>

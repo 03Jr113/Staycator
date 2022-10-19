@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update]
     resources :reviews, only: [:index, :show, :destroy]
     resources :tags, only: [:index, :destroy]
-    
+
   end
 
   devise_for :users, controllers: {
@@ -34,6 +34,7 @@ Rails.application.routes.draw do
       resources :comments, only: [:create, :destroy]
     end
     resources :tags, only: [:index, :show]
+    resources :items, only: [:index, :show]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

@@ -1,0 +1,23 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-12 my-5'>
+      <div class="card h-100">
+        <div class="card-header"><b>現在登録されているサービス一覧</b></div>
+        <% if @items.present? %>
+          <% @items.each do |item| %>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <%= link_to item_path(item), class: "btn btn-outline-dark" do %>
+                <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+              <% end %>
+              <%= item.name %>
+            </li>
+          </ul>
+          <% end %>
+        <% else %>
+          <div class="card-body"></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
