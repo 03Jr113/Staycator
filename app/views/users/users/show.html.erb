@@ -20,16 +20,16 @@
     <div class='col-3 mt-5'>
       <div class="card h-100">
         <div class="card-header"><b>参考になったレビュー</b></div>
-        <div class="card-body">
         <% @bookmark.each do |bookmark| %>
-          <h6 class="card-text mt-3">
-            <%= bookmark.review.title %>&nbsp;
-            <%= link_to review_path(bookmark.review.id), class: "btn btn-outline-dark" do %>
-            <i class="fa-solid fa-book-open-reader"></i>
-            <% end %>
-          </h6>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <%= link_to review_path(bookmark.review.id), class: "btn btn-outline-dark" do %>
+                <i class="fa-solid fa-book-open fa-lg"></i>
+              <% end %>
+              <%= bookmark.review.title %>
+            </li>
+          </ul>
         <% end %>
-        </div>
       </div>
     </div>
     <div class='col-3 mt-5'>
