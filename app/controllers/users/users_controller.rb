@@ -38,12 +38,11 @@ class Users::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :introduction, :age, :gender, :area, :email, :is_deleted)
+    params.require(:user).permit(:image, :name, :introduction, :age, :gender, :area, :email, :is_deleted)
   end
 
   def correct_user
     @user = User.find(params[:id])
-    flash[:alert] = '他のユーザのプロフィールは編集できません'
     redirect_to user_path(current_user) unless @user == current_user
   end
 

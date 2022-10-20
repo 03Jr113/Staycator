@@ -1,8 +1,11 @@
 <div class='container'>
   <div class='row'>
+    <h3 class="mx-auto"><b><%= @user.name %>のページ</b></h3>
+  </div>
+  <div class='row'>
     <div class='col-3 mt-5'>
       <div class="card h-100">
-        <div class="card-header"><b><%= @user.name %> のページ</b></div>
+        <%= image_tag @user.get_image.variant(resize:"600x600^", gravity: :center, crop:"600x600+0+0").processed, class: "card-img-top" %>
         <div class="card-body">
           <% if @user.id == current_user.id %>
             <%= link_to "Edit User", edit_user_path(@user.id), class: "btn btn-outline-dark" %>
@@ -35,17 +38,13 @@
     <div class='col-3 mt-5'>
       <div class="card h-100">
         <div class="card-header"><b><%= @user.name %>のフォロー</b></div>
-        <div class="card-body">
         <%= render 'relationships/followlist', users: @followed_users %>
-        </div>
       </div>
     </div>
     <div class='col-3 mt-5'>
       <div class="card h-100">
         <div class="card-header"><b><%= @user.name %>のフォロワー</b></div>
-        <div class="card-body">
         <%= render 'relationships/followlist', users: @follower_users %>
-        </div>
       </div>
     </div>
   </div>
