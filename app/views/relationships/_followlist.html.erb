@@ -1,12 +1,16 @@
 <% if users.exists? %>
   <% users.each do |user| %>
-    <p class="card-text mt-3">
-      <%= user.name %>
-      <%= link_to user_path(user), class: "btn btn-sm btn-outline-dark" do %>
-        <i class="fas fa-user"></i>&nbsp;Show User
-      <% end %>
-    </p>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <%= link_to user_path(user), class: "btn btn-outline-dark" do %>
+          <i class="fa-solid fa-user fa-lg"></i>
+        <% end %>
+        <%= user.name %>
+      </li>
+    </ul>
   <% end %>
 <% else %>
-  <p class="card-text mt-3">ユーザはいません</p>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">ユーザはいません</li>
+  </ul>
 <% end %>
