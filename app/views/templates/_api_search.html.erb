@@ -1,0 +1,43 @@
+<div class='row'>
+  <div class='col-6'>
+    <input type="text" class="form-control " id="search_area" >
+  </div>
+  <div class='col-2 px-0'>
+    <button type="button" class="btn btn-outline-dark" id="search_button">Search</button>
+  </div>
+</div>
+<script>
+$(function(){
+  $('#search_button').click(function(){
+    var keyword = $('search_area').val();
+    $.get('https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?', {
+        datatype: 'json',
+        keyword: keyword,
+        // page: '100',
+        // hits: '30',
+        applicationId: '1089020635914339192',
+      }
+    }).done(function(data){
+      if (data.count > 0){
+        $("ul").empty();
+        $.each(data.hotels, function(i, hotel){
+          var list = $("<li class='list-item'>" +
+              "<div class='list-item-inner'>" +
+              "<a href='" + hotel.hotel.hotelInformationUrl +
+          　　  "'class='list-item-link' target='_blank'>" +
+      　      "<img src='" + hotel.hotel.hotelThumbnailUrl +
+　　　　　　　　"' class='list-item-img' alt>" +
+　　　　　　　"<p class='list-item-detail'>ホテル名：　" +
+　　　　　　　　　　hotel.hotel.hotelName + '</p>' + '</a>' +
+　　　　　　　'</div>' + '</li>');
+　　　　　$('ul').prepend(list);
+        })
+      } else {
+        $('.list').before('<div class="comment"></div>')
+        comment = $('.comment');
+        comment.html('<p class="message>検索結果が見つかりませんでした</p>')
+      }
+    });
+  });
+});
+</script>

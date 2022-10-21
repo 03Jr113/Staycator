@@ -1,18 +1,17 @@
 <% review.comments.each do |comment| %>
-<p class="card-text mt-3">
-  <% if comment.user.is_deleted == false %>
-    <%= comment.user.name %>
-    <%= link_to user_path(comment.user), class: "btn btn-sm btn-outline-dark" do %>
-      <i class="fas fa-user"></i>&nbsp;Show User
+<ul class="list-group list-group-flush">
+  <li class="list-group-item">
+    <% if comment.user.is_deleted == false %>
+      <%= link_to user_path(comment.user), class: "btn btn-sm btn-outline-dark" do %>
+        <i class="fas fa-user"></i>&nbsp;<%= comment.user.name %>
+      <% end %>
+    <% else %>
+      退会済みユーザ
     <% end %>
-  <% else %>
-    退会済みユーザ
-  <% end %>
-</p>
-<p class="card-text">
-  <%= comment.comment %>
-  <% if comment.user == current_user %>
-    <%= link_to "Delete", review_comment_path(review, comment), method: :delete, data: { confirm: "削除しますか？" }, class: "btn btn-outline-dark" %>
-  <% end %>
-</p>
+    <%= comment.comment %>
+    <% if comment.user == current_user %>
+      <%= link_to "Delete", review_comment_path(review, comment), method: :delete, data: { confirm: "削除しますか？" }, class: "btn btn-sm btn-outline-dark" %>
+    <% end %>
+  </li>
+</ul>
 <% end %>
