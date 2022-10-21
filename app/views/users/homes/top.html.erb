@@ -1,45 +1,16 @@
 <div class='container'>
   <div class='row'>
-    <div class='col-6 mt-5'>
+    <div class='col-12 mt-5'>
       <div class="card h-100">
         <div class="card-header"><b>次はどこでステイケーションを楽しみますか？</b></div>
         <div class="card-body">
-          <h5 class="card-title mt-3"><b>ホテルを検索してみましょう</b></h5>
-          <p class="card-subtitle mt-3 text-muted">ホテル名やタグ、施設・設備で検索できます</p>
-          <!--検索窓を設置する予定-->
-          <% unless user_signed_in? %>
-            <%= link_to "ゲストログインで見てみる", users_guest_sign_in_path, method: :post, class: "mt-3 btn btn-outline-dark" %>
-          <% end %>
+          <h5 class="card-title mt-3"><b>レビューを検索してみましょう</b></h5>
+          <%= render 'templates/search' %>
         </div>
       </div>
     </div>
-    <div class='col-3 mt-5'>
-      <div class="card h-100">
-        <div class="card-header"><b>人気のタグランキング</b></div>
-        <% if @item_ranks.present? %>
-          <% @item_ranks.each.with_index(1) do |item, i| %>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-              第<%= i %>位
-              <%= item.name %>
-            </li>
-          </ul>
-          <% end %>
-        <% else %>
-        <% end %>
-      </div>
-    </div>
-    <div class='col-3 mt-5'>
-      <div class="card h-100">
-        <div class="card-header"><b>サービス別にホテルを探す</b></div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item"></li>
-        </ul>
-      </div>
-    </div>
   </div>
-
-  <div class='row'>
+  <div class='row pb-5'>
     <%= render 'templates/index', reviews: @reviews %>
   </div>
 </div>

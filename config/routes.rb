@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   root to: 'users/homes#top'
   get 'about' => 'users/homes#about'
+  get '/search', to: 'users/searches#search'
 
   devise_for :admins, controllers: {
   sessions:      'admins/sessions',

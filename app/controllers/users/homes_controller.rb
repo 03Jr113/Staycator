@@ -8,8 +8,4 @@ class Users::HomesController < ApplicationController
   def about
   end
 
-  def rank
-    @item_ranks = Item.find(Review.group(:item_id).order('count(item_id) desc').pluck(:item_id))
-  end
-
 end
