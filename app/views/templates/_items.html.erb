@@ -1,0 +1,16 @@
+<% if items.present? %>
+  <% items.each do |item| %>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item text-truncate">
+      <%= link_to item_path(item), class: "btn btn-outline-dark" do %>
+        <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+      <% end %>
+      <%= item.name %>
+    </li>
+  </ul>
+  <% end %>
+<% else %>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item text-truncate">サービスはありません</li>
+  </ul>
+<% end %>
