@@ -1,0 +1,16 @@
+<% if tags.present? %>
+  <% tags.each do |tag| %>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item text-truncate">
+      <%= link_to tag_path(tag), class: "btn btn-outline-dark" do %>
+        <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+      <% end %>
+      #<%= tag.name %>
+    </li>
+  </ul>
+  <% end %>
+<% else %>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item text-truncate">タグはありません</li>
+  </ul>
+<% end %>

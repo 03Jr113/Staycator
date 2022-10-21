@@ -6,6 +6,7 @@
         <div class="card-body">
           <div id="star-rate-<%= @review.id %>"></div>
           <script>
+          $('#star-rate-<%= @review.id %>').empty();
           $('#star-rate-<%= @review.id %>').raty({
             size: 38,
             starOff:  '<%= asset_path('star-off.png') %>',
@@ -50,31 +51,13 @@
     <div class='col-3 my-5'>
       <div class="card h-100">
         <div class="card-header"><b>サービス一覧</b></div>
-        <% @review.items.each do |item| %>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item text-truncate">
-            <%= link_to item_path(item), class: "btn btn-outline-dark" do %>
-              <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-            <% end %>
-            <%= item.name %>
-          </li>
-        </ul>
-        <% end %>
+        <%= render 'templates/items', items: @review.items %>
       </div>
     </div>
     <div class='col-3 my-5'>
       <div class="card h-100">
         <div class="card-header"><b>タグ一覧</b></div>
-        <% @review.tags.each do |tag| %>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item text-truncate" >
-            <%= link_to tag_path(tag), class: "btn btn-outline-dark" do %>
-              <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-            <% end %>
-            #<%= tag.name %>
-          </li>
-        </ul>
-        <% end %>
+        <%= render 'templates/tags', tags: @review.tags %>
       </div>
     </div>
   </div>
