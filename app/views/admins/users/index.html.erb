@@ -1,7 +1,7 @@
 <div class='container'>
-  <div class='row'>
+  <div class='row py-5'>
     <% @users.each do |user| %>
-    <div class='col-4 my-5'>
+    <div class='col-4'>
       <div class="card h-100">
         <div class="card-header"><b>登録日</b> <%= user.created_at.strftime( '%Y.%m.%d' ) %></div>
         <div class="card-body">
