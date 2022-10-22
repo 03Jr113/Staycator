@@ -1,6 +1,6 @@
 <div class='container'>
-  <div class='row'>
-    <div class='col-12 my-5'>
+  <div class='row py-5'>
+    <div class='col-12'>
       <div class="card h-100">
         <div class="card-header"><b>必要事項を入力して編集してください</b></div>
         <%= form_with model: @user, url: admins_user_path(@user.id), method: :patch do |f| %>
