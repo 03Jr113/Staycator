@@ -6,14 +6,15 @@ class Users::SearchesController < ApplicationController
     @model = params[:model]
     @word = params[:word]
     @method = params[:method]
-    if @model == 'tag'
+    if @model == 'hotel'
+      @results = Hotel.search_for(@word, @method)
+    elsif @model == 'tag'
       @results = Tag.search_for(@word, @method)
     elsif @model == 'item'
       @results = Item.search_for(@word, @method)
     elsif @model == 'review'
       @results = Review.search_for(@word, @method)
     end
-
   end
 
 end

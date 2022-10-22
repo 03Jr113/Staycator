@@ -3,6 +3,7 @@ class Review < ApplicationRecord
   has_one_attached :image
 
   belongs_to :user
+  belongs_to :hotel
   has_many :bookmarks, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :tag_maps, dependent: :destroy
