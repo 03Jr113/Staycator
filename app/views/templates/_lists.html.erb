@@ -1,0 +1,10 @@
+<% hotels.each do |hotel| %>
+<ul class="list-group list-group-flush">
+  <li class="list-group-item">
+    <%= link_to hotel_path(hotel), class: "btn btn-outline-dark" do %>
+      <i class="fa-solid fa-hotel fa-lg"></i>
+    <% end %>&nbsp;
+    <%= hotel.hotel_name %>（<%= hotel.area_i18n %>）
+  </li>
+</ul>
+<% end %>

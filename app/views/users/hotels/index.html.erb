@@ -1,0 +1,18 @@
+<div class='container'>
+  <div class='row py-5'>
+    <div class='col-8'>
+      <div class="card h-100">
+        <div class="card-header"><b>登録されているホテル一覧</b></div>
+        <%= render 'templates/lists', hotels: @hotels %>
+      </div>
+    </div>
+    <div class='col-4'>
+      <div class="card h-100">
+        <div class="card-header"><b>新規ホテル登録</b></div>
+        <div class="card-body">
+          <%= render 'new', hotel: @hotel %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
