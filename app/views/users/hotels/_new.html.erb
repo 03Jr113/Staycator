@@ -5,5 +5,5 @@
   <div class="form-group">
     <%= f.select :area, Hotel.areas_i18n.invert, {}, class: "form-control" %>
   </div>
-    <%= f.submit "Create", class: "btn btn-outline-dark" %>
+    <%= f.submit "登録", data: { confirm: "登録しますか？" }, class: "btn btn-outline-dark" %>
 <% end %>

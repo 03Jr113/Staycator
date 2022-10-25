@@ -4,7 +4,7 @@ class Users::HotelsController < ApplicationController
     @hotel = Hotel.new(hotel_params)
     if @hotel.save
       flash[:notice] = 'ホテルを登録しました'
-      redirect_to hotels_path
+      redirect_to hotel_path(@hotel)
     else
       render :index
     end
@@ -17,13 +17,6 @@ class Users::HotelsController < ApplicationController
 
   def show
     @hotel = Hotel.find(params[:id])
-  end
-
-  def search
-    @word = params[:word]
-    # @area = params[:area]
-    @method = params[:method]
-    @results = Hotel.search_for(@word, @method)
   end
 
   private

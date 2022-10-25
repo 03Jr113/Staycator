@@ -1,9 +1,9 @@
 <% if review.bookmarked_by?(current_user) %>
-  <%= link_to review_bookmarks_path(review), method: :delete do %>
+  <%= link_to hotel_review_bookmarks_path(review.hotel, review), method: :delete do %>
     <i class="fa-solid fa-thumbs-up fa-2x text-dark"></i><span class="text-dark">参考になった</span>
   <% end %>
 <% else %>
-  <%= link_to review_bookmarks_path(review), method: :post do %>
+  <%= link_to hotel_review_bookmarks_path(review.hotel, review), method: :post do %>
     <i class="fa-regular fa-thumbs-up fa-2x text-dark"></i><span class="text-dark">参考になった</span>
   <% end %>
 <% end %>

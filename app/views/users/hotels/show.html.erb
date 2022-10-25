@@ -1,0 +1,23 @@
+<div class='container'>
+  <div class='row py-5'>
+    <div class='col-8'>
+      <div class="card h-100">
+        <div class="card-header"><b>ホテル情報</b></div>
+        <div class="card-body">
+          <h4 class="card-title mt-3"><b><%= @hotel.hotel_name %></b></h4>
+          <h6 class="card-text"><%= @hotel.area_i18n %></h6>
+          <p class="card-text mt-3">
+            このホテルを利用されましたか？<br>
+            レビューを投稿して体験を共有しましょう
+            <%= link_to new_hotel_review_path(@hotel), class: "btn btn-outline-dark" do %>
+              <i class="far fa-edit fa-lg"></i>
+            <% end %>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class='col-4'>
+      <%= render 'templates/review_list', hotel: @hotel %>
+    </div>
+  </div>
+</div>

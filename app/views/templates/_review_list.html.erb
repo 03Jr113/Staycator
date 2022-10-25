@@ -1,0 +1,25 @@
+<div class="card h-100">
+  <div class="card-header"><b><%= hotel.hotel_name %>のレビュー</b></div>
+  <% if hotel.reviews.present? %>
+    <% hotel.reviews.each do |review| %>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <% if user_signed_in? %>
+          <%= link_to hotel_review_path(hotel, review), class: "btn btn-outline-dark" do %>
+            <i class="fa-solid fa-book-open fa-lg"></i>
+          <% end %>
+        <% elsif admin_signed_in? %>
+          <%= link_to admins_hotel_review_path(hotel, review), class: "btn btn-outline-dark" do %>
+            <i class="fa-solid fa-book-open fa-lg"></i>
+          <% end %>
+        <% end %>
+        &nbsp;<%= review.title %>
+      </li>
+    </ul>
+    <% end %>
+  <% else %>
+    <div class="card-body">
+      <h5 class="card-title mt-3 text-muted"><b>まだレビューはありません</b></h5>
+    </div>
+  <% end %>
+</div>

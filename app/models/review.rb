@@ -11,6 +11,8 @@ class Review < ApplicationRecord
   has_many :item_maps, dependent: :destroy
   has_many :items, through: :item_maps
 
+  validates :rate, numericality: { less_than_or_equal_to: 5, greater_than_or_equal_to: 1 }, presence: true
+
   def bookmarked_by?(user)
     bookmarks.where(user_id: user).exists?
   end
