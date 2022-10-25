@@ -6,10 +6,10 @@
         <% @item.reviews.each do |review| %>
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
-            <%= link_to review_path(review), class: "btn btn-outline-dark" do %>
+            <%= link_to hotel_review_path(review.hotel, review), class: "btn btn-outline-dark" do %>
               <i class="fa-solid fa-book-open"></i>
-            <% end %>
-            <span class="card-text ml-3"><%= review.title %></span>
+            <% end %>&nbsp;
+            <%= review.title %>
           </li>
         </ul>
         <% end %>

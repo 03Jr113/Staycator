@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 
   namespace :admins do
     resources :users, only: [:index, :show, :edit, :update]
-    resources :reviews, only: [:index, :show, :destroy]
+    resources :hotels, except: [:new, :create, :show] do
+      resources :reviews, only: [:index, :show, :destroy]
+    end
     resources :tags, only: [:index, :destroy]
     resources :items, only: [:index, :destroy]
   end
@@ -30,14 +32,15 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :edit, :update] do
       resource :relationships, only: [:create, :destroy]
     end
-    resources :reviews do
-      resource :bookmarks, only: [:create, :destroy]
-      resources :comments, only: [:create, :destroy]
+    resources :hotels, only: [:create, :index, :show] do
+      resources :reviews do
+        resource :bookmarks, only: [:create, :destroy]
+        resources :comments, only: [:create, :destroy]
+      end
     end
     resources :tags, only: [:index, :show]
     resources :items, only: [:index, :show]
-    resources :hotels, only: [:create, :index, :show]
-    get 'hotels', to: 'users/hotels#search'
+
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

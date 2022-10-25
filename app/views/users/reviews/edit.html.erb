@@ -3,8 +3,13 @@
     <div class='col-12 my-5'>
       <div class="card h-100">
         <div class="card-header"><b>必要事項を入力して編集してください</b></div>
-        <%= form_with model: @review, url: review_path, method: :patch do |f| %>
+        <%= form_with model: @review, url: hotel_review_path, method: :patch do |f| %>
         <div class="card-body">
+          <div class="form-group">
+            <label><b>レビューを投稿するホテル名*</b></label>
+            <input class="form-control" placeholder=<%= @hotel.hotel_name %> disabled>
+          </div>
+          <label><b>評価*</b></label>
           <div class="form-group" id="star">
             <%= f.hidden_field :rate, id: :review_star %>
           </div>
@@ -54,7 +59,10 @@
           </div>
           <span class="card-text text-muted">*は必須の入力事項です</span>
           <div class="form-group">
-            <%= f.submit "Save", class: "btn btn-outline-dark" %>
+            <%= link_to hotel_path(@hotel), class: "btn btn-outline-dark" do %>
+              <i class="fas fa-undo-alt fa-lg"></i>
+            <% end %>
+            <%= f.submit "編集を保存", class: "ml-3 btn btn-outline-dark" %>
           </div>
         </div>
         <% end %>

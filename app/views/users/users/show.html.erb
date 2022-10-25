@@ -2,8 +2,8 @@
   <div class='row'>
     <h3 class="mx-auto"><b><%= @user.name %>のページ</b></h3>
   </div>
-  <div class='row'>
-    <div class='col-3 mt-5'>
+  <div class='row py-5'>
+    <div class='col-3'>
       <div class="card h-100">
         <%= image_tag @user.get_image.variant(resize:"600x600^", gravity: :center, crop:"600x600+0+0").processed, class: "card-img-top" %>
         <div class="card-body">
@@ -20,7 +20,7 @@
         </div>
       </div>
     </div>
-    <div class='col-3 mt-5'>
+    <div class='col-3'>
       <div class="card h-100">
         <div class="card-header"><b>参考になったレビュー</b></div>
         <% @bookmark.each do |bookmark| %>
@@ -35,13 +35,13 @@
         <% end %>
       </div>
     </div>
-    <div class='col-3 mt-5'>
+    <div class='col-3'>
       <div class="card h-100">
         <div class="card-header"><b><%= @user.name %>のフォロー</b></div>
         <%= render 'relationships/followlist', users: @followed_users %>
       </div>
     </div>
-    <div class='col-3 mt-5'>
+    <div class='col-3'>
       <div class="card h-100">
         <div class="card-header"><b><%= @user.name %>のフォロワー</b></div>
         <%= render 'relationships/followlist', users: @follower_users %>

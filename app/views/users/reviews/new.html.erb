@@ -1,12 +1,18 @@
 <div class='container'>
+  <%= render 'templates/error', model: @review %>
   <div class='row'>
     <div class='col-12 my-5'>
       <div class="card h-100">
         <div class="card-header">
           <b>必要事項を入力して投稿してください</b>
         </div>
-        <%= form_with model: @review, url: reviews_path, method: :post do |f| %>
+        <%= form_with model: @review, url: hotel_reviews_path, method: :post do |f| %>
         <div class="card-body">
+          <div class="form-group">
+            <label><b>レビューを投稿するホテル名*</b></label>
+            <input class="form-control" placeholder=<%= @hotel.hotel_name %> disabled>
+          </div>
+          <label><b>評価*</b></label>
           <div class="form-group" id="star">
             <%= f.hidden_field :rate, id: :review_star %>
           </div>
@@ -55,7 +61,10 @@
           </div>
           <span class="card-text text-muted">*は必須の入力事項です</span>
           <div class="form-group">
-            <%= f.submit "Post Review", class: "btn btn-outline-dark" %>
+            <%= link_to hotel_path(@hotel), class: "btn btn-outline-dark" do %>
+              <i class="fas fa-undo-alt fa-lg"></i>
+            <% end %>
+            <%= f.submit "投稿", class: "ml-3 btn btn-outline-dark" %>
           </div>
         </div>
         <% end %>
