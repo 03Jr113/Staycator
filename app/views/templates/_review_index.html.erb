@@ -4,7 +4,13 @@
     <div class="card h-100">
       <div class="card-header"><b>投稿日</b> <%= review.created_at.strftime( '%Y.%m.%d' ) %></div>
       <div class="card-body">
-        <h4 class="card-title mt-3 text-truncate"><b><%= review.title %></b></h4>
+        <h4 class="card-title text-truncate"><b>
+          <% if user_signed_in? %>
+            <%= link_to review.title, hotel_review_path(review.hotel, review) %>
+          <% elsif admin_signed_in? %>
+            <%= link_to review.title, admins_hotel_review_path(review.hotel, review) %>
+          <% end %>
+        </b></h4>
         <h6 class="card-subtitle mt-3 text-truncate">
           <%= link_to hotel_path(review.hotel), class: "btn btn-sm btn-outline-dark" do %>
             <i class="fa-solid fa-hotel"></i>
@@ -13,11 +19,6 @@
         </h6>
         <h6 class="card-subtitle mt-3 text-muted"><%= review.user.name %></h6>
         <p class="card-text mt-3 text-truncate"><%= review.body %></p>
-        <% if user_signed_in? %>
-          <%= link_to "Read More", hotel_review_path(review.hotel, review), class: "btn btn-outline-dark" %>
-        <% elsif admin_signed_in? %>
-          <%= link_to "Check Review", admins_hotel_review_path(review.hotel, review), class: "btn btn-outline-danger" %>
-        <% end %>
       </div>
       <div class="card-footer">
         <i class="fa-solid fa-thumbs-up fa-lg text-dark"></i>&nbsp;<%= review.bookmarks.count %>&emsp;

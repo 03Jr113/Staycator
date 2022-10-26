@@ -22,4 +22,20 @@ class Hotel < ApplicationRecord
     end
   end
 
+  def avg_score
+    unless self.reviews.empty?
+      reviews.average(:rate).round(1)
+    else
+      0.0
+    end
+  end
+
+  def avg_score_percentage
+    unless self.reviews.empty?
+      reviews.average(:rate).round(1).to_f*5/5
+    else
+      0.0
+    end
+  end
+
 end
