@@ -8,8 +8,12 @@
         <%= image_tag @user.get_image.variant(resize:"600x600^", gravity: :center, crop:"600x600+0+0").processed, class: "card-img-top" %>
         <div class="card-body">
           <% if @user.id == current_user.id %>
-            <%= link_to "Edit User", edit_user_path(@user.id), class: "btn btn-outline-dark" %>
-            <%= link_to "Withdraw", users_unsubscribe_path, class: "btn btn-outline-dark" %>
+            <%= link_to edit_user_path(@user.id), class: "btn btn-outline-dark" do %>
+              <i class="fa-solid fa-user-pen fa-lg"></i>
+            <% end %>
+            <%= link_to users_unsubscribe_path, class: "ml-3 btn btn-outline-dark" do %>
+              <i class="fa-solid fa-trash fa-lg"></i>
+            <% end %>
           <% else %>
             <%= render 'relationships/followbtn', user: @user %>
           <% end %>

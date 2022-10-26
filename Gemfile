@@ -56,12 +56,13 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
+gem 'rails-i18n'
 
 gem 'jquery-rails'
 
 gem 'enum_help'
 
-# gem 'ransack'
+gem 'kaminari','~> 1.2.1'
 
 gem 'dotenv-rails'
 group :production do
