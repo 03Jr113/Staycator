@@ -1,0 +1,47 @@
+<div class='container'>
+  <%= render 'templates/error', model: @user %>
+  <div class='row py-5'>
+    <div class='col-12'>
+      <div class="card h-100">
+        <div class="card-header"><b>必要事項を入力して編集してください</b></div>
+        <%= form_with model: @user, url: user_path, method: :patch do |f| %>
+        <div class="card-body">
+          <div class="form-group">
+            <label><b>プロフィール画像</b></label><br>
+            <%= f.file_field :image, accept:"image/*" %>
+          </div>
+          <div class="form-group">
+            <label><b>ユーザ名*</b></label>
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <label><b>自己紹介</b></label>
+            <%= f.text_area :introduction, autofocus: true, :placeholder => "自己紹介を入力してください", class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <label><b>年代*</b></label>
+            <%= f.select :age, User.ages_i18n.invert, { prompt: "選択してください" }, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <label><b>性別*</b></label>
+            <%= f.select :gender, User.genders_i18n.invert, { prompt: "選択してください" }, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <label><b>お住まい*</b></label>
+            <%= f.select :area, User.areas_i18n.invert, { prompt: "選択してください" }, class: "form-control" %>
+          </div>
+          <span class="card-text text-muted">*は必須の入力事項です</span>
+          <div class="form-group">
+            <%= link_to user_path(@user), class: "btn btn-outline-dark", data: { confirm: "保存せずに戻りますか？" } do %>
+              <i class="fas fa-undo-alt fa-lg"></i>
+            <% end %>
+            <%= button_tag type: "submit", class: "ml-3 btn btn-outline-dark" do %>
+              <i class="fas fa-user-edit fa-lg"></i>&nbsp;更新する
+            <% end %>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

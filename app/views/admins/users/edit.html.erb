@@ -1,0 +1,39 @@
+<div class='container'>
+  <div class='row py-5'>
+    <div class='col-12'>
+      <div class="card h-100">
+        <div class="card-header"><b>必要事項を入力して編集してください</b></div>
+        <%= form_with model: @user, url: admins_user_path(@user.id), method: :patch do |f| %>
+        <div class="card-body">
+          <div class="form-group">
+            <label><b>ユーザ名</b></label>
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <label><b>自己紹介</b></label>
+            <%= f.text_area :introduction, autofocus: true, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <div class="btn-group" data-toggle="buttons">
+              <label class="btn btn-outline-dark" style="width:50%">
+                <%= f.radio_button :is_deleted, "false" %> 有効
+              </label>
+              <label class="btn btn-outline-dark" style="width:50%">
+                <%= f.radio_button :is_deleted, "true" %> 退会
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= link_to admins_users_path, class: "btn btn-outline-dark", data: { confirm: "保存せずに戻りますか？" } do %>
+              <i class="fas fa-undo-alt fa-lg"></i>
+            <% end %>
+            <%= button_tag type: "submit", class: "ml-3 btn btn-outline-dark" do %>
+              <i class="fas fa-user-edit fa-lg"></i>&nbsp;更新する
+            <% end %>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

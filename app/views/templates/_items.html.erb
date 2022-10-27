@@ -1,0 +1,23 @@
+<% if items.present? %>
+  <% items.each do |item| %>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <% if user_signed_in? %>
+        <%= link_to item_path(item), class: "btn btn-outline-dark" do %>
+          <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+        <% end %>&nbsp;
+      <% elsif admin_signed_in? %>
+        <%= link_to admins_item_path(item), method: :delete, data: { confirm: "削除しますか？" }, class: "btn btn-outline-danger" do %>
+          <i class="fa-solid fa-trash fa-lg"></i>
+        <% end %>&nbsp;
+      <% end %>
+      <span><%= item.name %></span>
+    </li>
+  </ul>
+  <% end %>
+<% else %>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item text-muted">サービスはありません</li>
+  </ul>
+<% end %>
+<%= paginate items %>

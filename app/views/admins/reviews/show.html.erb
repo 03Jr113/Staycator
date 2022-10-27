@@ -1,0 +1,73 @@
+<div class='container'>
+  <div class='row py-5'>
+    <div class='col-6'>
+      <div class="card">
+        <div class="card-header"><b>投稿日 <%= @review.created_at.strftime( '%Y.%m.%d' ) %></b></div>
+        <div class="card-body">
+          <h4 class="card-title">
+            <%= link_to hotel_path(@review.hotel), class: "btn btn-outline-dark" do %>
+              <i class="fa-solid fa-hotel fa-lg"></i>
+            <% end %>
+            <b><%= @review.hotel.hotel_name %></b>
+          </h4>
+          <div id="star-rate-<%= @review.id %>"></div>
+          <script>
+          $('#star-rate-<%= @review.id %>').empty();
+          $('#star-rate-<%= @review.id %>').raty({
+            size: 38,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            half: true,
+            readOnly: true,
+            score: <%= @review.rate %>,
+          });
+          </script>
+          <h4 class="card-title mt-3"><b><%= @review.title %></b></h4>
+          <%= link_to user_path(@review.user), class: "text-dark" do %>
+            <i class="fa-solid fa-user fa-lg"></i>
+            <%= @review.user.name %>
+          <% end %>
+          <p class="card-text mt-3"><%= @review.body %></p>
+          <% if @review.date.present? %>
+            <p class="card-text">利用日：<%= @review.date.strftime( '%Y.%m.%d' ) %></p>
+          <% else %>
+            <p class="card-text">利用日：不明</p>
+          <% end %>
+          <p class="card-text">旅行者タイプ：<%= @review.traveler_i18n %></p>
+          <% @review.tags.each do |tag| %>
+            <span class="card-text mt-2">
+              <%= link_to tag_path(tag) do %>
+                #<%= tag.name %>
+              <% end %>
+            </span>&nbsp;
+          <% end %>
+        </div>
+        <div class="card-footer">
+          <% if @review.user == current_user %>
+            <%= link_to edit_hotel_review_path(@review.hotel, @review), class:"btn btn-outline-dark" do %>
+              <i class="fa-solid fa-pen-to-square fa-lg"></i>
+            <% end %>
+            <%= link_to hotel_review_path(@review.hotel, @review), method: :delete,
+                data: { confirm: "削除しますか？" }, class:"ml-3 btn btn-outline-dark" do %>
+              <i class="fas fa-trash fa-lg"></i>
+            <% end %>
+          <% elsif admin_signed_in? %>
+            <%= link_to admins_hotel_review_path(@review.hotel, @review), method: :delete,
+                data: { confirm: "削除しますか？" }, class:"btn btn-outline-danger" do %>
+              <i class="fas fa-trash fa-lg"></i>
+            <% end %>
+          <% else %>
+            <%= render 'bookmarks/bookmark', review: @review %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class='col-6'>
+      <div class="card">
+        <div class="card-header"><b>投稿へのコメント</b></div>
+        <%= render 'comments/index', review: @review %>
+      </div>
+    </div>
+  </div>
+</div>

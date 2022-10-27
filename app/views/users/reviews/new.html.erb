@@ -1,0 +1,76 @@
+<div class='container'>
+  <%= render 'templates/error', model: @review %>
+  <div class='row py-5'>
+    <div class='col-12'>
+      <div class="card h-100">
+        <div class="card-header">
+          <b>必要事項を入力して投稿してください</b>
+        </div>
+        <%= form_with model: @review, url: hotel_reviews_path, method: :post do |f| %>
+        <div class="card-body">
+          <div class="form-group">
+            <label><b>レビューを投稿するホテル名*</b></label>
+            <input class="form-control" placeholder=<%= @hotel.hotel_name %> disabled>
+          </div>
+          <label><b>評価*</b></label>
+          <div class="form-group" id="star">
+            <%= f.hidden_field :rate, id: :review_star %>
+          </div>
+          <script>
+          $('#star').empty();
+          $('#star').raty({
+            size     : 38,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn :  '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            scoreName: 'review[rate]',
+            half: true,
+          });
+          </script>
+          <div class="form-group">
+            <label><b>レビューのタイトル*</b><i>（20文字以内）</i></label>
+            <%= f.text_field :title, autofocus: true, class: "form-control", :placeholder => "今回の体験で印象的だったことはなんですか？" %>
+          </div>
+          <div class="form-group">
+            <label><b>レビューの本文*</b><i>（400文字以内）</i></label>
+            <%= f.text_area :body, autofocus: true, class: "form-control",
+                :placeholder => "お客様のご滞在体験について聞かせてください。客室・サービス・施設や設備はいかがでしたか？" %>
+          </div>
+          <div class="form-group">
+            <label><b>ご利用日</b></label>
+            <%= f.date_field :date, autofocus: true, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <label><b>旅行者タイプ*</b></label>
+            <%= f.select :traveler, Review.travelers_i18n.invert, {}, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <label><b>ホテルで利用できるサービス</b></label>
+            <%= f.collection_check_boxes(:item_ids, Item.all, :id, :name) do |item| %>
+            <div class="form-check">
+              <%= item.label class: "form-check-label" do %>
+                <%= item.check_box class: "form-check-input" %>
+                <%= item.text %>
+              <% end %>
+            </div>
+            <% end %>
+          </div>
+          <div class="form-group">
+            <label><b>タグ</b><i>（半角スペースで区切ると複数の指定ができます）</i></label><br>
+            <%= f.text_field :tags, value: @review.tags.pluck(:name), :placeholder => "#は付けずに入力してください", class: "form-control" %>
+          </div>
+          <span class="card-text text-muted">*は必須の入力事項です</span>
+          <div class="form-group">
+            <%= link_to hotel_path(@hotel), data: { confirm: "投稿せずに戻りますか？" }, class: "btn btn-outline-dark" do %>
+              <i class="fas fa-undo-alt fa-lg"></i>
+            <% end %>
+            <%= button_tag type: "submit", class: "ml-3 btn btn-outline-dark" do %>
+              <i class="fas fa-edit fa-lg"></i>&nbsp;投稿する
+            <% end %>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

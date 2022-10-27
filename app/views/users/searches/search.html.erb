@@ -1,0 +1,18 @@
+<div class='container'>
+  <div class='row py-5'>
+    <div class='col-12'>
+      <div class="card h-100">
+        <div class="card-header"><b><%= @word %>の検索結果</b></div>
+        <% if @model == 'hotel' %>
+          <%= render 'templates/hotels', hotels: @results %>
+        <% elsif @model == 'tag' %>
+          <%= render 'templates/tags', tags: @results %>
+        <% elsif @model == 'item' %>
+          <%= render 'templates/items', items: @results %>
+        <% elsif @model == 'review' %>
+          <%= render 'templates/reviews', reviews: @results %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

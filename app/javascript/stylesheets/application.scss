@@ -1,0 +1,28 @@
+@import '~bootstrap/scss/bootstrap';
+
+main {
+  background-color: #fbf5ce;
+}
+
+.nav-tabs .nav-link.active {
+  background-color: #131b2c;
+  color: #fff;
+}
+
+.nav-tabs .nav-link{
+  color: #131b2c;
+}
+
+.pagination {
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.pagination>li>a {
+  border: none;
+  color: #bd3333;
+}
+
+.pagination>li>.active>a {
+  background-color: #131b2c;
+}

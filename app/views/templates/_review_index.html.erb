@@ -1,0 +1,44 @@
+<% if reviews.present? %>
+  <% reviews.each do |review| %>
+  <div class='col-4 mb-5'>
+    <div class="card h-100">
+      <div class="card-header"><b>投稿日</b> <%= review.created_at.strftime( '%Y.%m.%d' ) %></div>
+      <div class="card-body">
+        <h4 class="card-title text-truncate"><b>
+          <% if user_signed_in? %>
+            <%= link_to review.title, hotel_review_path(review.hotel, review) %>
+          <% elsif admin_signed_in? %>
+            <%= link_to review.title, admins_hotel_review_path(review.hotel, review) %>
+          <% else %>
+            <%= review.title %>
+          <% end %>
+        </b></h4>
+        <h6 class="card-subtitle mt-3 text-truncate">
+          <%= link_to hotel_path(review.hotel), class: "btn btn-sm btn-outline-dark" do %>
+            <i class="fa-solid fa-hotel"></i>
+          <% end %>
+          <%= review.hotel.hotel_name %>
+        </h6>
+        <h6 class="card-subtitle mt-3 text-muted"><%= review.user.name %></h6>
+        <p class="card-text mt-3 text-truncate"><%= review.body %></p>
+      </div>
+      <div class="card-footer">
+        <i class="fa-solid fa-thumbs-up fa-lg text-dark"></i>&nbsp;<%= review.bookmarks.count %>&emsp;
+        <i class="fas fa-comments fa-lg text-dark"></i>&nbsp;<%= review.comments.count %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+<% else %>
+  <div class='col-12'>
+    <div class="card h-100">
+      <div class="card-header"><b>まだレビューは投稿されていません</b></div>
+      <div class="card-body">
+        <% if user_signed_in? %>
+          <h5 class="card-title mt-3"><b>自身の体験を共有しましょう</b></h5>
+          <%= link_to "登録されているホテルを見てみる", hotels_path, class: "btn btn-outline-dark" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

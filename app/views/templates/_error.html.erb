@@ -1,0 +1,14 @@
+<% if model.errors.any? %>
+<div class='row pt-5'>
+  <div class='col-12'>
+    <div class="card h-100 text-white bg-danger">
+      <div class="card-header"><%= model.errors.count %>件のエラーが発生しました</div>
+      <% model.errors.full_messages.each do |message| %>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item text-danger"><%= message %></li>
+      </ul>
+      <% end %>
+    </div>
+  </div>
+</div>
+<% end %>

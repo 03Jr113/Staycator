@@ -1,0 +1,16 @@
+<% if users.exists? %>
+  <% users.each do |user| %>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <%= link_to user_path(user), class: "btn btn-outline-dark" do %>
+          <i class="fa-solid fa-user fa-lg"></i>
+        <% end %>&nbsp;
+        <%= user.name %>
+      </li>
+    </ul>
+  <% end %>
+<% else %>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">ユーザはいません</li>
+  </ul>
+<% end %>
