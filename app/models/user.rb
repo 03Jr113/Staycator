@@ -16,7 +16,7 @@ class User < ApplicationRecord
   has_many :followed_user, through: :follower, source: :followed
   has_many :follower_user, through: :followed, source: :follower
 
-  validates :introduction, length: { maximum: 200 }
+  validates :introduction, length: { maximum: 140 }
 
   enum age: { ten: 0, twenty: 1, thirty: 2, fourty: 3, fifty: 4, sixty: 5, personal: 6 }
   enum gender: { male: 0, female: 1, other: 2 }

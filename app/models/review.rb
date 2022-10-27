@@ -12,15 +12,14 @@ class Review < ApplicationRecord
   has_many :items, through: :item_maps
 
   validates :rate, numericality: { less_than_or_equal_to: 5, greater_than_or_equal_to: 1 }, presence: true
+  validates :title, presence: true, length: { maximum: 20 }
+  validates :body, presence: true, length: { maximum: 200 }
 
   def bookmarked_by?(user)
     bookmarks.where(user_id: user).exists?
   end
 
   enum traveler: { couple: 0, friend: 1, family: 2, single: 3, business: 4, other: 5 }
-
-  validates :title, presence: true, length: { maximum: 20 }
-  validates :body, presence: true, length: { maximum: 400 }
 
   def save_tag(sent_tags)
     tag_list = tags.split(/[[:blank:]]+/)
