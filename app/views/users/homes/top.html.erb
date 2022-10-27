@@ -1,5 +1,5 @@
 <div class='container'>
-  <div class='row py-5'>
+  <div class='row pt-5'>
     <div class='col-12'>
       <div class="card h-100">
         <div class="card-header"><b>どこでステイケーションを楽しみますか？</b></div>
@@ -10,7 +10,10 @@
       </div>
     </div>
   </div>
-  <div class='row pb-5'>
+  <div class='row pt-2'>
+    <h3 class="mx-auto py-1 px-3 rounded-pill border border-dark bg-dark text-white">New Reviews</h3>
+  </div>
+  <div class='row'>
     <%= render 'templates/review_index', reviews: @reviews %>
   </div>
 </div>

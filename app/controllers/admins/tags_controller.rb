@@ -1,7 +1,7 @@
 class Admins::TagsController < ApplicationController
 
   def index
-    @tags = Tag.all
+    @tags = Tag.all.page(params[:page]).per(7)
   end
 
   def destroy

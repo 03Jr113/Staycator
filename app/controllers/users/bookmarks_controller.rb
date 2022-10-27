@@ -1,5 +1,7 @@
 class Users::BookmarksController < ApplicationController
 
+  before_action :authenticate_user!
+
   def create
     @review = Review.find(params[:review_id])
     @bookmark = @review.bookmarks.new(user_id: current_user.id)

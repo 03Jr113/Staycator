@@ -7,13 +7,13 @@ class Users::SearchesController < ApplicationController
     @word = params[:word]
     @method = params[:method]
     if @model == 'hotel'
-      @results = Hotel.search_for(@word, @method)
+      @results = Hotel.search_for(@word, @method).page(params[:page]).per(7)
     elsif @model == 'tag'
-      @results = Tag.search_for(@word, @method)
+      @results = Tag.search_for(@word, @method).page(params[:page]).per(7)
     elsif @model == 'item'
-      @results = Item.search_for(@word, @method)
+      @results = Item.search_for(@word, @method).page(params[:page]).per(7)
     elsif @model == 'review'
-      @results = Review.search_for(@word, @method)
+      @results = Review.search_for(@word, @method).page(params[:page]).per(7)
     end
   end
 

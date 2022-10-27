@@ -1,19 +1,28 @@
-<% review.comments.each do |comment| %>
-<ul class="list-group list-group-flush">
-  <li class="list-group-item">
-    <% if comment.user.is_deleted == false %>
-      <%= link_to user_path(comment.user), class: "btn btn-sm btn-outline-dark" do %>
-      <i class="fas fa-user"></i>&nbsp;
-      <%= comment.user.name %>
+<% if review.comments.present? %>
+  <% review.comments.each do |comment| %>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <% if comment.user.is_deleted == false %>
+        <%= link_to user_path(comment.user), class: "text-dark" do %>
+          <i class="fas fa-user"></i>
+          <%= comment.user.name %>
+        <% end %>
+      <% else %>
+        退会済みユーザ
       <% end %>
-    <% else %>
-      退会済みユーザ
+      <br>
+      <%= comment.comment %>
+      <% if comment.user == current_user %>
+      <%= link_to hotel_review_comment_path(review.hotel, review, comment), method: :delete,
+          data: { confirm: "削除しますか？" }, class: "btn btn-sm btn-dark" do %>
+        <i class="fas fa-trash"></i>
+      <% end %>
+    </li>
     <% end %>
-    <br>
-    <%= comment.comment %>
-    <% if comment.user == current_user %>
-    <%= link_to "Delete", hotel_review_comment_path(review.hotel, review, comment), method: :delete, data: { confirm: "削除しますか？" }, class: "btn btn-sm btn-outline-dark" %>
-  </li>
+  </ul>
   <% end %>
-</ul>
+<% else %>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item text-muted">まだコメントはありません</li>
+  </ul>
 <% end %>

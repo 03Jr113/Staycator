@@ -1,8 +1,8 @@
 <div class='container'>
-  <div class='row'>
-    <div class='col-12 my-5'>
+  <div class='row py-5'>
+    <div class='col-12'>
       <div class="card h-100 border-danger">
-        <div class="card-header"><b>まだ退会は完了していません</b></div>
+        <div class="card-header text-white bg-danger"><b>まだ退会は完了していません</b></div>
         <div class="card-body">
           <h6 class="card-title text-danger"><b>以下の注意事項を必ずご確認の上、退会の手続きをしてください。</b></h6>
           <p class="card-subtitle"><b>プロフィールについて</b></p>
@@ -16,10 +16,10 @@
             <li>退会前に投稿したコメントは、退会後も削除されません</li>
           </ol>
           <%= link_to user_path(current_user), class: "btn btn-outline-dark" do %>
-            <i class="fas fa-undo-alt fa-lg"></i>
+            <i class="fas fa-undo-alt fa-lg"></i>&nbsp;戻る
           <% end %>
-          <%= link_to users_withdraw_path, method: :patch, class: "ml-3 btn btn-outline-dark", data: { confirm: "退会しますか？" } do %>
-            <i class="fa-solid fa-trash fa-lg"></i>
+          <%= link_to users_withdraw_path, method: :patch, class: "ml-3 btn btn-outline-danger", data: { confirm: "退会しますか？" } do %>
+            <i class="fa-solid fa-trash fa-lg"></i>&nbsp;退会する
           <% end %>
         </div>
       </div>

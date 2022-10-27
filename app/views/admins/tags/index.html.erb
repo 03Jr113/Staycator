@@ -3,16 +3,7 @@
     <div class='col-12 my-5'>
       <div class="card h-100">
         <div class="card-header"><b>登録されているタグ一覧</b></div>
-        <% @tags.each do |tag| %>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            <%= link_to admins_tag_path(tag), method: :delete, data: { confirm: "削除しますか？" }, class: "btn btn-outline-danger" do %>
-              <i class="fa-solid fa-trash fa-lg"></i>
-            <% end %>&nbsp;
-            <%= tag.name %>
-          </li>
-        </ul>
-        <% end %>
+        <%= render 'templates/tags', tags: @tags %>
       </div>
     </div>
   </div>

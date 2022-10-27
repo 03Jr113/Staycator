@@ -1,12 +1,14 @@
 class Users::UsersController < ApplicationController
 
+  before_action :authenticate_user!
   before_action :correct_user, only: [:edit, :update]
   before_action :ensure_guest_user, only: [:edit, :update]
 
   def show
     @user = User.find(params[:id])
-    @followed_users = @user.followed_user
-    @follower_users = @user.follower_user
+    @reviews = @user.reviews.page(params[:page]).per(3)
+    @followed_users = @user.followed_user.page(params[:page]).per(5)
+    @follower_users = @user.follower_user.page(params[:page]).per(5)
   end
 
   def edit

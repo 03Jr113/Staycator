@@ -1,18 +1,19 @@
 <div class='container'>
-  <div class='row'>
-    <div class='col-12 my-5'>
+  <div class='row py-5'>
+    <div class='col-12'>
       <div class="card h-100">
         <div class="card-header"><b>#<%= @tag.name %>のレビュー一覧</b></div>
-        <% @tag.reviews.each do |review| %>
+        <% @reviews.each do |review| %>
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
-            <%= link_to review_path(review), class: "btn btn-outline-dark" do %>
+            <%= link_to hotel_review_path(review.hotel, review), class: "btn btn-outline-dark" do %>
               <i class="fa-solid fa-book-open"></i>
-            <% end %>
-            <span class="card-text ml-3"><%= review.title %></span>
+            <% end %>&nbsp;
+            <span><%= review.title %></span>
           </li>
         </ul>
         <% end %>
+        <%= paginate @reviews %>
       </div>
     </div>
   </div>

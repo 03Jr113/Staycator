@@ -1,18 +1,9 @@
 <div class='container'>
-  <div class='row'>
-    <div class='col-12 my-5'>
+  <div class='row py-5'>
+    <div class='col-12'>
       <div class="card h-100">
         <div class="card-header"><b>登録されているサービス一覧</b></div>
-        <% @items.each do |item| %>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            <%= link_to admins_item_path(item), method: :delete, data: { confirm: "削除しますか？" }, class: "btn btn-outline-danger" do %>
-              <i class="fa-solid fa-trash fa-lg"></i>
-            <% end %>&nbsp;
-            <%= item.name %>
-          </li>
-        </ul>
-        <% end %>
+        <%= render 'templates/items', items: @items %>
       </div>
     </div>
   </div>
