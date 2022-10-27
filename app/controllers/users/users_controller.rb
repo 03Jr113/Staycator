@@ -5,7 +5,6 @@ class Users::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @bookmark = Bookmark.where(user_id: @user.id)
     @followed_users = @user.followed_user
     @follower_users = @user.follower_user
   end
