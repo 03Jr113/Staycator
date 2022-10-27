@@ -1,4 +1,6 @@
 class Admins::HotelsController < ApplicationController
+  
+  before_action :authenticate_admin!
 
   def index
     @hotels = Hotel.all.page(params[:page]).per(7)
