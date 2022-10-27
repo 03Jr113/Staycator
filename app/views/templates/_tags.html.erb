@@ -2,15 +2,22 @@
   <% tags.each do |tag| %>
   <ul class="list-group list-group-flush">
     <li class="list-group-item text-truncate">
-      <%= link_to tag_path(tag), class: "btn btn-outline-dark" do %>
-        <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+      <% if user_signed_in? %>
+        <%= link_to tag_path(tag), class: "btn btn-outline-dark" do %>
+          <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+        <% end %>&nbsp;
+      <% elsif admin_signed_in? %>
+        <%= link_to admins_tag_path(tag), method: :delete, data: { confirm: "削除しますか？" }, class: "btn btn-outline-danger" do %>
+          <i class="fa-solid fa-trash fa-lg"></i>
+        <% end %>&nbsp;
       <% end %>
-      #<%= tag.name %>
+      <span>#<%= tag.name %></span>
     </li>
   </ul>
   <% end %>
 <% else %>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item text-truncate">タグはありません</li>
+    <li class="list-group-item text-muted">まだタグはありません</li>
   </ul>
 <% end %>
+<%= paginate tags %>

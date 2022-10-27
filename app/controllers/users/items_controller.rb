@@ -1,7 +1,9 @@
 class Users::ItemsController < ApplicationController
 
+  before_action :authenticate_user!
+
   def index
-    @items = Item.all
+    @items = Item.all.page(params[:page]).per(7)
   end
 
   def show

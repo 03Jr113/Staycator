@@ -1,11 +1,12 @@
 class Admins::HotelsController < ApplicationController
 
   def index
-    @hotels = Hotel.all
+    @hotels = Hotel.all.page(params[:page]).per(7)
   end
 
   def edit
     @hotel = Hotel.find(params[:id])
+    @reviews = @hotel.reviews.page(params[:page]).per(7)
   end
 
   def update

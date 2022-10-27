@@ -1,44 +1,72 @@
 <div class='container'>
-  <div class='row'>
-    <h3 class="mx-auto"><b><%= @user.name %>のページ</b></h3>
-  </div>
-  <div class='row py-5'>
-    <div class='col-6'>
-      <div class="card h-100">
-        <div class="card-body">
-          <%= image_tag @user.get_image.variant(resize:"120x120^", gravity: :center, crop:"500x500+0+0").processed, class: "border border-5 rounded-3" %>
-          <%= @user.name %>
-          <% if @user.id == current_user.id %>
-            <%= link_to edit_user_path(@user.id), class: "btn btn-outline-dark" do %>
-              <i class="fa-solid fa-user-pen fa-lg"></i>
+  <div class='row pt-5'>
+    <div class='col-12'>
+      <ul class="nav nav-tabs justify-content-center">
+        <li class="nav-item">
+          <a href="#info1" class="nav-link active" data-toggle="tab">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a href="#info2" class="nav-link" data-toggle="tab">Follower</a>
+        </li>
+        <li class="nav-item">
+          <a href="#info3" class="nav-link" data-toggle="tab">Followed</a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div id="info1" class="tab-pane active" style="background-color:#fff; color:#131b2c;">
+          <div class="d-flex">
+            <%= image_tag @user.get_image.variant(resize:"150x150^", gravity: :center, crop:"150x150+0+0").processed, class: "m-3 border border-dark" %>
+            <div class="m-3">
+              <p>
+                <i class="fas fa-calendar"></i>
+                <%= @user.created_at.strftime( '%Y.%m.%d' ) %> に登録
+              </p>
+              <p>
+                <i class="fas fa-map-marker-alt"></i>
+                <%= @user.area_i18n %>
+              </p>
+              <p>
+                <i class="fas fa-birthday-cake"></i>
+                <%= @user.age_i18n %>
+              </p>
+              <p>
+                <i class="fas fa-male"></i>
+                <%= @user.gender_i18n %>
+              </p>
+            </div>
+            <p class="m-3" style="width:450px;">
+              <b>自己紹介</b><br>
+              <%= @user.introduction %>
+            </p>
+            <div class="m-3 align-self-start">
+            <% if current_user == @user %>
+              <%= link_to edit_user_path(@user.id), class: "btn btn-outline-dark" do %>
+                <i class="fa-solid fa-user-pen fa-lg"></i>&nbsp;
+                プロフィール編集
+              <% end %><br>
+              <%= link_to users_unsubscribe_path, class: "mt-3 btn btn-outline-dark" do %>
+                <i class="fas fa-user-slash fa-lg"></i>&nbsp;
+                退会手続きをする
+              <% end %>
+            <% else %>
+              <%= render 'relationships/btn', user: @user %>
             <% end %>
-            <%= link_to users_unsubscribe_path, class: "ml-3 btn btn-outline-dark" do %>
-              <i class="fa-solid fa-trash fa-lg"></i>
-            <% end %>
-          <% else %>
-            <%= render 'relationships/followbtn', user: @user %>
-          <% end %>
-          <h6 class="card-subtitle mt-3"><b>年代</b>：<%= @user.age_i18n %></h6>
-          <h6 class="card-subtitle mt-3"><b>性別</b>：<%= @user.gender_i18n %></h6>
-          <h6 class="card-subtitle mt-3"><b>お住まい</b>：<%= @user.area_i18n %></h6>
-          <p class="card-text mt-3"><b>自己紹介</b><br><%= @user.introduction %></p>
+            </div>
+          </div>
+        </div>
+        <div id="info2" class="tab-pane">
+          <%= render 'relationships/follows', users: @follower_users %>
+        </div>
+        <div id="info3" class="tab-pane">
+          <%= render 'relationships/follows', users: @followed_users %>
         </div>
       </div>
     </div>
-    <div class='col-3'>
-      <div class="card h-100">
-        <div class="card-header"><b><%= @user.name %>のフォロー</b></div>
-        <%= render 'relationships/followlist', users: @followed_users %>
-      </div>
-    </div>
-    <div class='col-3'>
-      <div class="card h-100">
-        <div class="card-header"><b><%= @user.name %>のフォロワー</b></div>
-        <%= render 'relationships/followlist', users: @follower_users %>
-      </div>
-    </div>
   </div>
-  <div class='row pb-5'>
-    <%= render 'templates/review_index', reviews: @user.reviews %>
+  <div class='mx-auto'>
+    <%= paginate @reviews %>
+  </div>
+  <div class='row'>
+    <%= render 'templates/review_index', reviews: @reviews %>
   </div>
 </div>

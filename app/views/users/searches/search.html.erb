@@ -1,28 +1,18 @@
 <div class='container'>
   <div class='row py-5'>
-    <% if @model == 'hotel' %>
-      <div class='col-12'>
-        <div class="card h-100">
-          <div class="card-header"><b><%= @word %>の検索結果</b></div>
-          <%= render 'templates/lists', hotels: @results %>
-        </div>
-      </div>
-    <% elsif @model == 'tag' %>
-      <div class='col-6'>
-        <div class="card h-100">
-          <div class="card-header"><b><%= @word %>の検索結果</b></div>
+    <div class='col-12'>
+      <div class="card h-100">
+        <div class="card-header"><b><%= @word %>の検索結果</b></div>
+        <% if @model == 'hotel' %>
+          <%= render 'templates/hotels', hotels: @results %>
+        <% elsif @model == 'tag' %>
           <%= render 'templates/tags', tags: @results %>
-        </div>
-      </div>
-    <% elsif @model == 'item' %>
-      <div class='col-6'>
-        <div class="card h-100">
-          <div class="card-header"><b><%= @word %>の検索結果</b></div>
+        <% elsif @model == 'item' %>
           <%= render 'templates/items', items: @results %>
-        </div>
+        <% elsif @model == 'review' %>
+          <%= render 'templates/reviews', reviews: @results %>
+        <% end %>
       </div>
-    <% elsif @model == 'review' %>
-      <%= render 'templates/index', reviews: @results %>
-    <% end %>
+    </div>
   </div>
 </div>

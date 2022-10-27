@@ -1,5 +1,6 @@
 class Users::ReviewsController < ApplicationController
 
+  before_action :authenticate_user!
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def new
@@ -20,11 +21,6 @@ class Users::ReviewsController < ApplicationController
     else
       render :new
     end
-  end
-
-  def index
-    @reviews = Review.all
-    @tag_list = Tag.all
   end
 
   def show

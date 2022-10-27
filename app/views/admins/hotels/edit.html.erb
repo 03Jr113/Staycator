@@ -17,14 +17,17 @@
             <i class="fas fa-undo-alt fa-lg"></i>
           <% end %>
           <%= button_tag type: "submit", class: "ml-3 btn btn-outline-dark" do %>
-            <i class="fa-solid fa-pen-to-square fa-lg"></i>
+            <i class="fa-solid fa-pen-to-square fa-lg"></i>&nbsp;更新する
           <% end %>
         </div>
         <% end %>
       </div>
     </div>
     <div class='col-6'>
-      <%= render 'templates/review_list', hotel: @hotel %>
+      <div class="card">
+        <div class="card-header"><b><%= @hotel.hotel_name %>のレビュー一覧</b></div>
+        <%= render 'templates/reviews', reviews: @reviews %>
+      </div>
     </div>
   </div>
 </div>
