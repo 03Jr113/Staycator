@@ -1,6 +1,6 @@
 <%= form_with model: [review, comment], url: hotel_review_comments_path(review.hotel, review), method: :post do |f| %>
   <div class="form-group">
-    <%= f.text_area :comment, autofocus: true, class: "form-control", :placeholder => "レビューに感想を寄せましょう" %>
+    <%= f.text_area :comment, autofocus: true, class: "form-control", :placeholder => "レビューに感想を寄せましょう（140字以内）" %>
   </div>
   <%= button_tag type: "submit", class: "btn btn-outline-dark" do %>
     <i class="fas fa-comment fa-lg"></i>&nbsp;コメントする
