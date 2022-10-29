@@ -10,6 +10,7 @@
             <h5 class="my-auto mr-2"><%= @hotel.avg_score_percentage %></h5>
             <div class="average-rating" data-score=<%= @hotel.avg_score %>></div>
             <script>
+            $('.average-rating').empty();
             $('.average-rating').raty({
               readOnly: true,
               starOn: "<%= asset_path('star-on.png') %>",
