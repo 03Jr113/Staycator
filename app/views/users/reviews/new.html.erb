@@ -45,7 +45,7 @@
             <%= f.select :traveler, Review.travelers_i18n.invert, {}, class: "form-control" %>
           </div>
           <div class="form-group">
-            <label><b>ホテルで利用できるサービス</b></label>
+            <label><b>ホテルで利用したサービス</b></label>
             <%= f.collection_check_boxes(:item_ids, Item.all, :id, :name) do |item| %>
             <div class="form-check">
               <%= item.label class: "form-check-label" do %>

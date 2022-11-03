@@ -1,9 +1,13 @@
 <%= form_with model: hotel, url: hotels_path, method: :post do |f| %>
   <div class="form-group">
+    <label><b>ホテル名*</b></label>
     <%= f.text_field :hotel_name, autofocus: true, class: "form-control", :placeholder => "ホテル名を入力してください" %>
   </div>
   <%= f.hidden_field :lat,:value =>"緯度", id: :lat %>
   <%= f.hidden_field :lng,:value =>"経度", id: :lng %>
   <%= render 'google' %>
-  <%= f.submit "登録", data: { confirm: "登録しますか？" }, class: "btn btn-outline-dark" %>
+  <span class="card-text text-muted">*は必須の入力事項です</span>
+  <div class="form-group">
+    <%= f.submit "登録", data: { confirm: "登録しますか？" }, class: "btn btn-outline-dark" %>
+  </div>
 <% end %>
