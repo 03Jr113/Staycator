@@ -35,7 +35,7 @@
             <i class="fa-solid fa-user fa-lg"></i>
             <%= @review.user.name %>
           <% end %>
-          <p class="card-text mt-3"><%= @review.body %></p>
+          <p class="card-text mt-3"><%= safe_join(@review.body.split("\n"),tag(:br)) %></p>
           <% if @review.date.present? %>
             <p class="card-text">利用日：<%= @review.date.strftime( '%Y.%m.%d' ) %></p>
           <% else %>

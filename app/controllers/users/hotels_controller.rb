@@ -3,6 +3,7 @@ class Users::HotelsController < ApplicationController
   before_action :authenticate_user!
 
   def create
+    @hotels = Hotel.all.page(params[:page]).per(7)
     @hotel = Hotel.new(hotel_params)
     if @hotel.save
       flash[:notice] = 'ホテルを登録しました'
@@ -25,7 +26,7 @@ class Users::HotelsController < ApplicationController
   private
 
   def hotel_params
-    params.require(:hotel).permit(:hotel_name, :area)
+    params.require(:hotel).permit(:hotel_name, :lat, :lng)
   end
 
 end

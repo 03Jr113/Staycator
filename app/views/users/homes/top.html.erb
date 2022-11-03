@@ -10,9 +10,11 @@
       </div>
     </div>
   </div>
-  <div class='row pt-2'>
-    <h3 class="mx-auto py-1 px-3 rounded-pill border border-dark bg-dark text-white">New Reviews</h3>
-  </div>
+  <% if @reviews.present? %>
+    <div class='row pt-2'>
+      <h3 class="mx-auto py-1 px-3 rounded-pill border border-dark bg-dark text-white">New Reviews</h3>
+    </div>
+  <% end %>
   <div class='row'>
     <%= render 'templates/review_index', reviews: @reviews %>
   </div>

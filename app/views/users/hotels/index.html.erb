@@ -1,12 +1,13 @@
 <div class='container'>
+  <%= render 'templates/error', model: @hotel %>
   <div class='row py-5'>
-    <div class='col-8'>
+    <div class='col-6'>
       <div class="card">
         <div class="card-header"><b>登録されているホテル一覧</b></div>
         <%= render 'templates/hotels', hotels: @hotels %>
       </div>
     </div>
-    <div class='col-4'>
+    <div class='col-6'>
       <div class="card">
         <div class="card-header"><b>新規ホテル登録</b></div>
         <div class="card-body">

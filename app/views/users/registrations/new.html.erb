@@ -12,15 +12,15 @@
           </div>
           <div class="form-group">
             <label><b>年代</b></label>
-            <%= f.select :age, User.ages_i18n.invert, {}, class: "form-control" %>
+            <%= f.select :age, User.ages_i18n.invert, { prompt: "選択してください" }, class: "form-control" %>
           </div>
           <div class="form-group">
             <label><b>性別</b></label>
-            <%= f.select :gender, User.genders_i18n.invert, {}, class: "form-control" %>
+            <%= f.select :gender, User.genders_i18n.invert, { prompt: "選択してください" }, class: "form-control" %>
           </div>
           <div class="form-group">
             <label><b>お住まい</b></label>
-            <%= f.select :area, User.areas_i18n.invert, {}, class: "form-control" %>
+            <%= f.select :area, User.areas_i18n.invert, { prompt: "選択してください" }, class: "form-control" %>
           </div>
           <div class="form-group">
             <label><b>メールアドレス</b></label>
@@ -37,7 +37,7 @@
             <label><b>パスワード（確認用）</b></label>
             <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
           </div>
-          <%= f.submit "Sign Up", class: "btn btn-outline-dark" %>
+          <%= f.submit "新規登録", class: "btn btn-outline-dark" %>
         </div>
         <% end %>
         <div class="card-footer">
