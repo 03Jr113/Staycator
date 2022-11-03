@@ -23,9 +23,6 @@ class Users::HotelsController < ApplicationController
     @reviews = @hotel.reviews.page(params[:page]).per(7)
   end
 
-  def map_edit
-  end
-
   private
 
   def hotel_params
