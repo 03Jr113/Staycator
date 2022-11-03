@@ -26,7 +26,7 @@ class Users::HotelsController < ApplicationController
   private
 
   def hotel_params
-    params.require(:hotel).permit(:hotel_name, :area)
+    params.require(:hotel).permit(:hotel_name, :lat, :lng)
   end
 
 end
