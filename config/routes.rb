@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'labels/index'
+  get 'labels/show'
   root to: 'users/homes#top'
   get 'about' => 'users/homes#about'
   get 'search', to: 'users/searches#search'
@@ -40,6 +42,7 @@ Rails.application.routes.draw do
     end
     resources :tags, only: [:index, :show]
     resources :items, only: [:index, :show]
+    resources :labels, only: [:show]
 
   end
 

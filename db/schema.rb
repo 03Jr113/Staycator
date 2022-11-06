@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_03_125434) do
+ActiveRecord::Schema.define(version: 2022_11_06_172236) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -103,6 +103,21 @@ ActiveRecord::Schema.define(version: 2022_11_03_125434) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "label_maps", force: :cascade do |t|
+    t.integer "review_id", null: false
+    t.integer "label_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["label_id"], name: "index_label_maps_on_label_id"
+    t.index ["review_id"], name: "index_label_maps_on_review_id"
+  end
+
+  create_table "labels", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "relationships", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
@@ -167,6 +182,8 @@ ActiveRecord::Schema.define(version: 2022_11_03_125434) do
   add_foreign_key "hotel_maps", "reviews"
   add_foreign_key "item_maps", "items"
   add_foreign_key "item_maps", "reviews"
+  add_foreign_key "label_maps", "labels"
+  add_foreign_key "label_maps", "reviews"
   add_foreign_key "reviews", "hotels"
   add_foreign_key "reviews", "users"
   add_foreign_key "tag_maps", "reviews"

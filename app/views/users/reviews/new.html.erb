@@ -37,6 +37,10 @@
                 :placeholder => "お客様のご滞在体験について聞かせてください。客室・サービス・施設や設備はいかがでしたか？" %>
           </div>
           <div class="form-group">
+            <label><b>画像をアップロード</b></label><br>
+            <%= f.file_field :image %>
+          </div>
+          <div class="form-group">
             <label><b>ご利用日</b></label>
             <%= f.date_field :date, autofocus: true, class: "form-control" %>
           </div>

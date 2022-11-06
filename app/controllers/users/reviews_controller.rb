@@ -16,6 +16,10 @@ class Users::ReviewsController < ApplicationController
     tag_list = params[:review][:tags].split(nil)
     if @review.save
       @review.save_tag(tag_list)
+      labels = Vision.get_image_data(@review.image)
+        labels.each do |label|
+        @review.labels.create(name: label)
+      end
       flash[:notice] = 'レビューを投稿しました'
       redirect_to hotel_review_path(@hotel, @review)
     else
@@ -58,7 +62,7 @@ class Users::ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:user_id, :hotel_id, :date, :traveler, :title, :body, :rate, item_ids: [])
+    params.require(:review).permit(:user_id, :hotel_id, :date, :traveler, :title, :body, :rate, :image, item_ids: [])
   end
 
   def correct_user
