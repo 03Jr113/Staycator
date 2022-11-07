@@ -81,10 +81,9 @@
       <div class="card">
         <%= image_tag @review.image, class: "card-img-top" %>
         <div class="card-body">
-          <!--画像のキャプション-->
           <% @review.labels.each do |label| %>
           <span>
-            <%= link_to label_path(label), class: "btn btn-dark" do %>
+            <%= link_to label_path(label), class: "mt-1 btn btn-dark" do %>
               <%= label.name %>
             <% end %>
           </span>
