@@ -38,10 +38,11 @@
 - ホテル側が求められるサービスを知りたいとき
 
 ## 設計書
-- 画面遷移図：
+- 画面遷移図　　　：
 - ワイヤーフレーム：
 - ER図
-- テーブル定義書：https://docs.google.com/spreadsheets/d/168IZZCsXgqtac9h4wd8E60iQViuOGReF/edit#gid=1243549839
+- テーブル定義書　：https://docs.google.com/spreadsheets/d/168IZZCsXgqtac9h4wd8E60iQViuOGReF/edit#gid=1243549839
+- 詳細設計書　　　：https://docs.google.com/spreadsheets/d/1tqL9gUAHUu3HGncKanlPHHz22GPq1D3KyuMDGQAFkoc/edit#gid=549108681
 
 ## 開発環境
 - OS：Linux(CentOS)
