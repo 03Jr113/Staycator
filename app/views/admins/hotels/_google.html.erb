@@ -1,0 +1,50 @@
+<div class="form-group">
+  <label><b>Google Mapで位置情報を修正する</b></label>
+  <input id="address" class="form-control" type="text"  placeholder="郵便番号・住所やホテル名で検索できます">
+  <input class="mt-2 btn btn-outline-dark" type="button" value="検索" onclick="codeAddress()">
+</div>
+<div id="map" class="my-2" style="height:300px; width:100%;"></div>
+<script>
+let map
+let marker
+function initMap(){
+  geocoder = new google.maps.Geocoder()
+  map = new google.maps.Map(document.getElementById('map'), {
+    center:  {lat: <%= hotel.lat %>, lng: <%= hotel.lng %>},
+    zoom: 15,
+  });
+  }
+
+let geocoder
+let aft
+function codeAddress(){
+  let inputAddress = document.getElementById('address').value;
+  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+    if (status == 'OK') {
+      if (aft == true){
+        marker.setMap(null);
+      }
+
+      map.setCenter(results[0].geometry.location);
+        marker = new google.maps.Marker({
+        map: map,
+        position: results[0].geometry.location,
+        draggable: true
+      });
+
+      aft = true
+
+      document.getElementById('lat').value = results[0].geometry.location.lat();
+      document.getElementById('lng').value = results[0].geometry.location.lng();
+
+      google.maps.event.addListener( marker, 'dragend', function(ev){
+        document.getElementById('lat').value = ev.latLng.lat();
+        document.getElementById('lng').value = ev.latLng.lng();
+      });
+    } else {
+        alert('該当する結果がありません。');
+      }
+  });
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap" async defer></script>

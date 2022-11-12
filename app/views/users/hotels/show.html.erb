@@ -4,8 +4,7 @@
       <div class="card h-100">
         <div class="card-header"><b>ホテル情報</b></div>
         <div class="card-body">
-          <h4 class="card-title mt-3"><b><%= @hotel.hotel_name %></b></h4>
-          <h6 class="card-text"><%= @hotel.area_i18n %></h6>
+          <h4 class="card-title"><b><%= @hotel.hotel_name %></b></h4>
           <div class='d-flex'>
             <h5 class="my-auto mr-2"><%= @hotel.avg_score_percentage %></h5>
             <div class="average-rating" data-score=<%= @hotel.avg_score %>></div>
@@ -26,6 +25,7 @@
               <%= @hotel.reviews.count %>
             </p>
           </div>
+          <%= render 'map', hotel: @hotel %>
           <p class="card-text mt-3">
             このホテルを利用されましたか？<br>
             レビューを投稿して体験を共有しましょう

@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     end
     resources :tags, only: [:index, :show]
     resources :items, only: [:index, :show]
+    resources :labels, only: [:show]
 
   end
 

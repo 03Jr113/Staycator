@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_24_045255) do
+ActiveRecord::Schema.define(version: 2022_11_06_172236) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.bigint "record_id", null: false
-    t.bigint "blob_id", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2022_10_24_045255) do
   end
 
   create_table "active_storage_variant_records", force: :cascade do |t|
-    t.bigint "blob_id", null: false
+    t.integer "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
@@ -82,7 +82,8 @@ ActiveRecord::Schema.define(version: 2022_10_24_045255) do
 
   create_table "hotels", force: :cascade do |t|
     t.string "hotel_name", null: false
-    t.integer "area", null: false
+    t.float "lat", null: false
+    t.float "lng", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -97,6 +98,21 @@ ActiveRecord::Schema.define(version: 2022_10_24_045255) do
   end
 
   create_table "items", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "label_maps", force: :cascade do |t|
+    t.integer "review_id", null: false
+    t.integer "label_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["label_id"], name: "index_label_maps_on_label_id"
+    t.index ["review_id"], name: "index_label_maps_on_review_id"
+  end
+
+  create_table "labels", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -166,6 +182,8 @@ ActiveRecord::Schema.define(version: 2022_10_24_045255) do
   add_foreign_key "hotel_maps", "reviews"
   add_foreign_key "item_maps", "items"
   add_foreign_key "item_maps", "reviews"
+  add_foreign_key "label_maps", "labels"
+  add_foreign_key "label_maps", "reviews"
   add_foreign_key "reviews", "hotels"
   add_foreign_key "reviews", "users"
   add_foreign_key "tag_maps", "reviews"

@@ -75,4 +75,22 @@
       </div>
     </div>
   </div>
+  <% if @review.image.attached? %>
+  <div class='row pb-5'>
+    <div class="col-4">
+      <div class="card">
+        <%= image_tag @review.image, class: "card-img-top" %>
+        <div class="card-body">
+          <% @review.labels.each do |label| %>
+          <span>
+            <%= link_to label_path(label), class: "mt-1 btn btn-dark" do %>
+              <%= label.name %>
+            <% end %>
+          </span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
 </div>
