@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'labels/index'
-  get 'labels/show'
   root to: 'users/homes#top'
   get 'about' => 'users/homes#about'
   get 'search', to: 'users/searches#search'
