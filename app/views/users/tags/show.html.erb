@@ -3,17 +3,7 @@
     <div class='col-12'>
       <div class="card">
         <div class="card-header"><b>#<%= @tag.name %>のレビュー一覧</b></div>
-        <% @reviews.each do |review| %>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            <%= link_to hotel_review_path(review.hotel, review), class: "btn btn-outline-dark" do %>
-              <i class="fa-solid fa-book-open"></i>
-            <% end %>&nbsp;
-            <span><%= review.title %></span>
-          </li>
-        </ul>
-        <% end %>
-        <%= paginate @reviews %>
+        <%= render 'templates/reviews', reviews: @reviews %>
       </div>
     </div>
   </div>

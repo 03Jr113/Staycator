@@ -8,6 +8,7 @@ class Users::ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @reviews = @item.reviews.page(params[:page]).per(7)
   end
 
 end
