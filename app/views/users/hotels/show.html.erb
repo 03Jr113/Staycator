@@ -40,7 +40,6 @@
       <div class="card">
         <div class="card-header"><b><%= @hotel.hotel_name %>のレビュー一覧</b></div>
         <%= render 'templates/reviews', reviews: @reviews %>
-        <%= paginate @reviews %>
       </div>
     </div>
   </div>
